@@ -226,7 +226,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wizard: {fileID: 8895951712100627039}
-  paladin: {fileID: 2061673976990625189}
+  paladin: {fileID: 6207915341589319274}
   maxTimerDuration: 3
   skeletonSpawnPoint: {fileID: 2271746021283085037}
   timeBetweenSkeletonSpawn: 1.5

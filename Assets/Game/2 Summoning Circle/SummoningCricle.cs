@@ -16,6 +16,7 @@ public class SummoningCricle : MonoBehaviour
     [SerializeField, HideIf(nameof(moveType), MovementType.STATIC)] private float movementSpeed;
 
     [Header("Summons")]
+    [SerializeField, Min(1)] private int level = 1;
     [SerializeField] private SummonType summonType;
     [SerializeField, HideIf(nameof(summonType), SummonType.CONTACT)] private float summonCastTime;
 
@@ -48,6 +49,7 @@ public class SummoningCricle : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (!collision.TryGetComponent(out Summonable summonable)) return;
+        if (!summonable.CanBeSummoned(level)) return;
         if (entitiesToSummon.Contains(summonable)) return;
 
         if (moveType == MovementType.SNAP_FOLLOW)
