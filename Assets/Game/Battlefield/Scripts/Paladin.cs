@@ -11,7 +11,6 @@ public class Paladin : MonoBehaviour
         {
             summonable.GetReturned();
             BattlefieldManager.Instance.IncreaseTimer(1f);
-            Destroy(collision.gameObject);
         }
     }
 }
