@@ -133,6 +133,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: accb28b60025c6347a3632b9a02aecdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraFollow: {fileID: 0}
   movementSpeed: 5
   dashCooldown: 2
   dashDuration: 0.3
@@ -313,14 +314,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f76afa3e143dd643a1e4d13eb6e2f81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  minimumSummonLevel: 1
+  data:
+    speed: 0.5
+    increaseTimeValue: 5
+    isValueOnPercentage: 0
+    experience: 1
   onGetSummoned:
     m_PersistentCalls:
       m_Calls: []
   onGetReturned:
     m_PersistentCalls:
       m_Calls: []
-  data:
-    speed: 0.5
-    increaseTimeValue: 5
-    isValueOnPercentage: 0
-    experience: 1
