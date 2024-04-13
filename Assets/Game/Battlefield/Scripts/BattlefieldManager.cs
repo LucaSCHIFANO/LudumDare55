@@ -20,14 +20,19 @@ public class BattlefieldManager : MonoBehaviour
     private float currentTimerDuration;
 
     [Header("Spawn")]
-    [SerializeField] private Transform skeletonSpawnPoint;    
-    private List<Transform> skeletonWaitingToSpawn;
-    private List<Transform> skeletonSpawned;
+    [SerializeField] private Transform skeletonSpawnPoint;
+    private List<Transform> skeletonWaitingToSpawn = new List<Transform>();
+    private List<Transform> skeletonSpawned = new List<Transform>();
+
+    [SerializeField] private float timeBetweenSkeletonSpawn;
+    private float currentTimeBetweenSkeletonSpawn;
+    [SerializeField] private float skeletonSpeed;
     
 
     void Awake()
     {
-        if(instance != null) instance = this;
+        if (instance == null) instance = this;
+        else Destroy(gameObject);
 
         wizardStartingPoint = wizard.transform.position;
         paladinStartingPoint = paladin.transform.position;
@@ -38,14 +43,24 @@ public class BattlefieldManager : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Space)) IncreaseTimer(1, true);
-        else if (Input.GetKeyDown(KeyCode.LeftShift)) IncreaseTimer(1, false);
-
         if(currentTimerDuration > 0)
         {
             currentTimerDuration -= Time.deltaTime;
             updatePaladinPosition();
         }
+
+        if (skeletonWaitingToSpawn.Count > 0 && currentTimeBetweenSkeletonSpawn <= 0) 
+        {
+            skeletonWaitingToSpawn[0].transform.position = skeletonSpawnPoint.position;
+            skeletonSpawned.Add(skeletonWaitingToSpawn[0]);
+            skeletonWaitingToSpawn.RemoveAt(0);
+
+            currentTimeBetweenSkeletonSpawn = timeBetweenSkeletonSpawn;
+        }
+
+        MoveSkeletons();
+
+        currentTimeBetweenSkeletonSpawn -= Time.deltaTime;
     }
 
     private void updatePaladinPosition()
@@ -66,8 +81,19 @@ public class BattlefieldManager : MonoBehaviour
 
     public void SummonSkeleton(Transform npc)
     {
-        
+        skeletonWaitingToSpawn.Add(npc);
     }
 
-
+    private void MoveSkeletons()
+    {
+        for (int i = 0; i < skeletonSpawned.Count; ++i)
+        {
+            if (skeletonSpawned[i] == null)
+            {
+                skeletonSpawned.RemoveAt(i);
+                i--;
+            } 
+            else skeletonSpawned[i].position += new Vector3(skeletonSpeed, 0, 0);
+        }
+    }
 }
