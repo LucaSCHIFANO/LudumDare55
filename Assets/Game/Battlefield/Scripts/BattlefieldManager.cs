@@ -5,6 +5,9 @@ using UnityEngine.UIElements;
 
 public class BattlefieldManager : MonoBehaviour
 {
+    private static BattlefieldManager instance = null;
+    public static BattlefieldManager Instance => instance;
+
     [Header("GameObject")]
     [SerializeField] private GameObject wizard;  
     [SerializeField] private GameObject paladin;
@@ -16,8 +19,16 @@ public class BattlefieldManager : MonoBehaviour
     [SerializeField] private float maxTimerDuration;
     private float currentTimerDuration;
 
+    [Header("Spawn")]
+    [SerializeField] private Transform skeletonSpawnPoint;    
+    private List<Transform> skeletonWaitingToSpawn;
+    private List<Transform> skeletonSpawned;
+    
+
     void Awake()
     {
+        if(instance != null) instance = this;
+
         wizardStartingPoint = wizard.transform.position;
         paladinStartingPoint = paladin.transform.position;
         paladinToWizardvector = (wizard.transform.position - paladin.transform.position);
@@ -47,11 +58,15 @@ public class BattlefieldManager : MonoBehaviour
     {
         if (isPercentage)
             currentTimerDuration += maxTimerDuration * time;
-        
         else
             currentTimerDuration += time;
 
         currentTimerDuration = Mathf.Clamp(currentTimerDuration,0 , maxTimerDuration);
+    }
+
+    public void SummonSkeleton(Transform npc)
+    {
+        
     }
 
 
