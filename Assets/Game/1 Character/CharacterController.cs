@@ -16,6 +16,7 @@ public class CharacterController : MonoBehaviour
 
     private Summonable summonable;
     private bool isSummoned = false;
+    private Vector3 summonedPosition;
 
     private void Start()
     {
@@ -71,11 +72,13 @@ public class CharacterController : MonoBehaviour
 
     private void OnSummoned()
     {
+        summonedPosition = transform.position;
         isSummoned = true;
     }
 
     private void OnReturn()
     {
+        transform.position = summonedPosition;
         isSummoned = false;
     }
 

@@ -319,3 +319,8 @@ MonoBehaviour:
   onGetReturned:
     m_PersistentCalls:
       m_Calls: []
+  data:
+    speed: 0.5
+    increaseTimeValue: 5
+    isValueOnPercentage: 0
+    experience: 1
