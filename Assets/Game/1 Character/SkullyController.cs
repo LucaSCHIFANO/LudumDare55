@@ -1,7 +1,8 @@
+using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterController : MonoBehaviour
+public class SkullyController : MonoBehaviour
 {
     [SerializeField] private FollowTargetPosition cameraFollow;
 
@@ -16,14 +17,18 @@ public class CharacterController : MonoBehaviour
     bool isDashing = false;
     private Vector3 dashDirection = Vector3.right;
 
+    [SerializeField] private float respawnTime = 2;
     private Summonable summonable;
     private bool isSummoned = false;
     private Vector3 summonedPosition;
+    private Collider2D summonCollider;
     [SerializeField] private Animator animator;
 
     private void Start()
     {
         summonable = GetComponent<Summonable>();
+        summonCollider = GetComponent<Collider2D>();
+
         summonable.onGetSummoned.AddListener(OnSummoned);
         summonable.onGetSummoned.AddListener(() => cameraFollow.SetTarget(null));
 
@@ -92,9 +97,17 @@ public class CharacterController : MonoBehaviour
 
     private void OnReturn()
     {
-        animator.SetTrigger("IsReturned");
+        summonCollider.enabled = false;
         transform.position = summonedPosition;
-        isSummoned = false;
+        animator.SetTrigger("IsReturned");
+        StartCoroutine(WaitRespawnTime());
+
+        IEnumerator WaitRespawnTime()
+        {
+            yield return new WaitForSeconds(respawnTime);
+            isSummoned = false;
+            summonCollider.enabled = true;
+        }
     }
 
     private void OnDestroy()

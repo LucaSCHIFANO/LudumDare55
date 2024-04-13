@@ -184,17 +184,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 185b5f1fb44c1fa4084263aef0c49665, type: 3}
---- !u!114 &737090985 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6674876300375218067, guid: 4cdd5e56db6608a45917475078c4a3c0, type: 3}
-  m_PrefabInstance: {fileID: 2602799399049567602}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: accb28b60025c6347a3632b9a02aecdf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &737090990 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 512145446684726413, guid: 4cdd5e56db6608a45917475078c4a3c0, type: 3}
@@ -276,7 +265,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   circlePrefab: {fileID: 1110575373920287761, guid: 4c24612a80d56474db05617beddcf9d3, type: 3}
-  player: {fileID: 737090985}
+  player: {fileID: 0}
   spawnPoint: {fileID: 1717603299}
 --- !u!4 &1203165907
 Transform:
@@ -527,6 +516,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 6674876300375218067, guid: 4cdd5e56db6608a45917475078c4a3c0, type: 3}
+      propertyPath: cameraFollow
+      value: 
+      objectReference: {fileID: 942048294}
+    - target: {fileID: 7875950088065230577, guid: 4cdd5e56db6608a45917475078c4a3c0, type: 3}
       propertyPath: cameraFollow
       value: 
       objectReference: {fileID: 942048294}

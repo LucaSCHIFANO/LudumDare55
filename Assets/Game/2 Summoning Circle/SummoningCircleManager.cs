@@ -6,13 +6,13 @@ public class SummoningCircleManager : MonoBehaviour
 {
     [SerializeField] private SummoningCricle circlePrefab;
     private SummoningCricle circleInstance;
-    [SerializeField] private CharacterController player;
+    [SerializeField] private SkullyController player;
     [SerializeField] private Transform spawnPoint;
 
     private void Start()
     {
         if(player == null)
-            player = FindFirstObjectByType<CharacterController>();
+            player = FindFirstObjectByType<SkullyController>();
         NewSummonCircle();
     }
 

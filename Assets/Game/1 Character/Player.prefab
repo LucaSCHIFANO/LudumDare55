@@ -63,7 +63,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 512145446684726413}
-  - component: {fileID: 6674876300375218067}
+  - component: {fileID: 7875950088065230577}
   - component: {fileID: 596097457238438019}
   - component: {fileID: 8476552956845138024}
   - component: {fileID: 5652844435017998517}
@@ -91,7 +91,7 @@ Transform:
   - {fileID: 4662372159378279789}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &6674876300375218067
+--- !u!114 &7875950088065230577
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -100,13 +100,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 5858750929223458737}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: accb28b60025c6347a3632b9a02aecdf, type: 3}
+  m_Script: {fileID: 11500000, guid: 77149346c12d1994ea5589c145adcb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   cameraFollow: {fileID: 0}
   movementSpeed: 5
   dashCooldown: 2
-  dashDuration: 0.3
+  dashDuration: 0.25
   dashSpeed: 15
   dashCurve:
     serializedVersion: 2
@@ -119,19 +119,20 @@ MonoBehaviour:
       tangentMode: 0
       weightedMode: 0
       inWeight: 0
-      outWeight: 0
+      outWeight: 0.33333334
     - serializedVersion: 3
-      time: 1
-      value: 0.25
-      inSlope: -2.4999995
-      outSlope: -2.4999995
+      time: 1.0015869
+      value: 0.2
+      inSlope: -2.4111066
+      outSlope: -2.4111066
       tangentMode: 0
       weightedMode: 0
-      inWeight: 0.08018869
+      inWeight: 0.039260432
       outWeight: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+  respawnTime: 1.5
   animator: {fileID: 6963761447382333742}
 --- !u!114 &596097457238438019
 MonoBehaviour:
@@ -160,8 +161,8 @@ MonoBehaviour:
   m_ActionEvents:
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6674876300375218067}
-        m_TargetAssemblyTypeName: CharacterController, Assembly-CSharp
+      - m_Target: {fileID: 7875950088065230577}
+        m_TargetAssemblyTypeName: SkullyController, Assembly-CSharp
         m_MethodName: HorizontalInput
         m_Mode: 0
         m_Arguments:
@@ -176,8 +177,8 @@ MonoBehaviour:
     m_ActionName: Keyboard/Horizontal[/Keyboard/leftArrow,/Keyboard/rightArrow,/Keyboard/a,/Keyboard/d,/XInputControllerWindows/leftStick/left,/XInputControllerWindows/leftStick/right]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6674876300375218067}
-        m_TargetAssemblyTypeName: CharacterController, Assembly-CSharp
+      - m_Target: {fileID: 7875950088065230577}
+        m_TargetAssemblyTypeName: SkullyController, Assembly-CSharp
         m_MethodName: VerticalInput
         m_Mode: 0
         m_Arguments:
@@ -192,8 +193,8 @@ MonoBehaviour:
     m_ActionName: Keyboard/Vertical[/Keyboard/downArrow,/Keyboard/upArrow,/Keyboard/s,/Keyboard/w,/XInputControllerWindows/leftStick/down,/XInputControllerWindows/leftStick/up]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 6674876300375218067}
-        m_TargetAssemblyTypeName: CharacterController, Assembly-CSharp
+      - m_Target: {fileID: 7875950088065230577}
+        m_TargetAssemblyTypeName: SkullyController, Assembly-CSharp
         m_MethodName: Dash
         m_Mode: 0
         m_Arguments:
@@ -243,8 +244,8 @@ CapsuleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 1}
-  m_Size: {x: 1, y: 2}
+  m_Offset: {x: 0, y: 0.28}
+  m_Size: {x: 0.8, y: 0.14}
   m_Direction: 0
 --- !u!50 &5652844435017998517
 Rigidbody2D:
@@ -365,6 +366,26 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -3970311537052544292, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 265791185289391903, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1609719090194301641, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 2179884108100506821, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 5272413585649891229, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 5291378619951579470, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
       propertyPath: m_LocalScale.y
       value: 0.9999998
@@ -372,6 +393,14 @@ PrefabInstance:
     - target: {fileID: 8285336455802895914, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0.04056323
+      objectReference: {fileID: 0}
+    - target: {fileID: 8298262461824846163, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 8773158880038310357, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
+      propertyPath: m_MaskInteraction
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
