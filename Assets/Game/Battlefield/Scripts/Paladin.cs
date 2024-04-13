@@ -10,7 +10,7 @@ public class Paladin : MonoBehaviour
         if (summonable != null)
         {
             summonable.GetReturned();
-            BattlefieldManager.Instance.IncreaseTimer(1f);
+            BattlefieldManager.Instance.IncreaseTimer(summonable.Data.increaseTimeValue, summonable.Data.isValueOnPercentage);
         }
     }
 }

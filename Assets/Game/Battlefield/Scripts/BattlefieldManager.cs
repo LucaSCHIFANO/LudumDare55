@@ -26,7 +26,6 @@ public class BattlefieldManager : MonoBehaviour
 
     [SerializeField] private float timeBetweenSkeletonSpawn;
     private float currentTimeBetweenSkeletonSpawn;
-    [SerializeField] private float skeletonSpeed;
     
 
     void Awake()
@@ -36,7 +35,7 @@ public class BattlefieldManager : MonoBehaviour
 
         wizardStartingPoint = wizard.transform.position;
         paladinStartingPoint = paladin.transform.position;
-        paladinToWizardvector = (wizard.transform.position - paladin.transform.position);
+        paladinToWizardvector = (wizardStartingPoint - paladinStartingPoint);
 
         currentTimerDuration = maxTimerDuration;
     }
@@ -79,21 +78,23 @@ public class BattlefieldManager : MonoBehaviour
         currentTimerDuration = Mathf.Clamp(currentTimerDuration,0 , maxTimerDuration);
     }
 
-    public void SummonSkeleton(Transform npc)
+    public void SummonSkeleton(Summonable npc)
     {
         skeletonWaitingToSpawn.Add(npc);
+        npc.onGetReturned.AddListener(() => RemoveSkeleton(npc));
     }
 
     private void MoveSkeletons()
     {
         for (int i = 0; i < skeletonSpawned.Count; ++i)
         {
-            if (skeletonSpawned[i] == null)
-            {
-                skeletonSpawned.RemoveAt(i);
-                i--;
-            } 
-            else skeletonSpawned[i].position += new Vector3(skeletonSpeed, 0, 0);
+            skeletonSpawned[i].transform.position += new Vector3(skeletonSpawned[i].Data.speed, 0, 0);
         }
+    }
+
+    private void RemoveSkeleton(Summonable npc)
+    {
+        skeletonSpawned.Remove(npc);
+        npc.onGetReturned.RemoveListener(() => RemoveSkeleton(npc));
     }
 }
