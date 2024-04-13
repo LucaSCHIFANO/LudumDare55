@@ -1,11 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Events;
 
+[RequireComponent(typeof(Summonable))]
 public class NPCCharacterController : MonoBehaviour
 {
-    private enum WorldState { SKELETON_REALM, BATTLEFIELD }
     private enum MovementState { IDLE, RUNNING }
 
     [SerializeField] private float moveSpeed;
@@ -13,31 +12,30 @@ public class NPCCharacterController : MonoBehaviour
     [SerializeField] private float wanderCooldown;
     [SerializeField] private Transform wanderPatrolCenter;
 
-    public event UnityAction OnSummoned;
-
-    private WorldState worldState = WorldState.SKELETON_REALM;
     private MovementState moveState = MovementState.IDLE;
     private Vector3 targetPoint;
     private float wanderTimer = 0f;
+    private bool isSummoned = false;
+    private Summonable summon;
 
     private void Start()
     {
+        summon = GetComponent<Summonable>();
+        summon.onGetSummoned.AddListener(OnSummon);
+
         if (wanderPatrolCenter == null)
             wanderPatrolCenter = transform;
     }
 
     private void Update()
     {
-        switch (worldState)
-        {
-            case WorldState.SKELETON_REALM:
-                RealmUpdate();
-                break;
+        if (isSummoned) return;
+        RealmUpdate();
+    }
 
-            case WorldState.BATTLEFIELD:
-            default:
-                break;
-        }
+    private void OnDisable()
+    {
+        summon.onGetSummoned.RemoveListener(OnSummon);
     }
 
     private void RealmUpdate()
@@ -73,5 +71,10 @@ public class NPCCharacterController : MonoBehaviour
     {
         Vector2 dir = targetPoint - transform.position;
         transform.Translate(dir.normalized * Time.deltaTime * moveSpeed);
+    }
+
+    private void OnSummon()
+    {
+        isSummoned = true;
     }
 }
