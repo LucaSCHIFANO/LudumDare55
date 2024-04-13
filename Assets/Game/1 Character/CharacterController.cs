@@ -1,8 +1,9 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterController : MonoBehaviour, ISummonable
+public class CharacterController : MonoBehaviour
 {
+    [Header("Movement")]
     [SerializeField] private float movementSpeed = 5;
     private Vector3 direction;
     private float dashTime;
@@ -13,8 +14,22 @@ public class CharacterController : MonoBehaviour, ISummonable
     bool isDashing = false;
     private Vector3 dashDirection = Vector3.right;
 
+    private Summonable summonable;
+    private bool isSummoned = false;
+
+    private void Start()
+    {
+        summonable = GetComponent<Summonable>();
+        summonable.onGetSummoned.AddListener(OnSummoned);
+        summonable.onGetReturned.AddListener(OnReturn);
+    }
+
     private void Update()
     {
+        if (isSummoned)
+            return;
+
+
         direction = direction.normalized;
         if (isDashing)
         {
@@ -54,8 +69,19 @@ public class CharacterController : MonoBehaviour, ISummonable
         }
     }
 
-    public void OnGetSummoned()
+    private void OnSummoned()
     {
-        Debug.Log("player summoned");
+        isSummoned = true;
+    }
+
+    private void OnReturn()
+    {
+        isSummoned = false;
+    }
+
+    private void OnDestroy()
+    {
+        summonable.onGetSummoned.RemoveListener(OnSummoned);
+        summonable.onGetReturned.RemoveListener(OnReturn);
     }
 }

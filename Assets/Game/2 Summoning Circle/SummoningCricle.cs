@@ -19,10 +19,10 @@ public class SummoningCricle : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        var summonable = collision.GetComponent<ISummonable>();
+        var summonable = collision.GetComponent<Summonable>();
         if(summonable != null)
         {
-            summonable.OnGetSummoned();
+            summonable.GetSummoned();
             onSummonEntity.Invoke();
             Destroy(gameObject);
         }
