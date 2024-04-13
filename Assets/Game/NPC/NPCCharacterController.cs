@@ -11,6 +11,7 @@ public class NPCCharacterController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private Vector2 wanderTargetRadius;
     [SerializeField] private float wanderCooldown;
+    [SerializeField] private Transform wanderPatrolCenter;
 
     public event UnityAction OnSummoned;
 
@@ -18,6 +19,12 @@ public class NPCCharacterController : MonoBehaviour
     private MovementState moveState = MovementState.IDLE;
     private Vector3 targetPoint;
     private float wanderTimer = 0f;
+
+    private void Start()
+    {
+        if (wanderPatrolCenter == null)
+            wanderPatrolCenter = transform;
+    }
 
     private void Update()
     {
@@ -59,7 +66,7 @@ public class NPCCharacterController : MonoBehaviour
 
     private void GetNewTargetPoint()
     {
-        targetPoint = MathExtension.RandomPointInsideCircle(transform.position, wanderTargetRadius.y, wanderTargetRadius.x);
+        targetPoint = MathExtension.RandomPointInsideCircle(wanderPatrolCenter.position, wanderTargetRadius.y, wanderTargetRadius.x);
     }
 
     private void Move()
