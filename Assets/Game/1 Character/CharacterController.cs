@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class CharacterController : MonoBehaviour
+public class CharacterController : MonoBehaviour, ISummonable
 {
     [SerializeField] private float movementSpeed = 5;
     private Vector3 direction;
@@ -52,5 +52,10 @@ public class CharacterController : MonoBehaviour
             dashTime = Time.time;
             dashDirection = dashDirection.normalized;
         }
+    }
+
+    public void OnGetSummoned()
+    {
+        Debug.Log("player summoned");
     }
 }
