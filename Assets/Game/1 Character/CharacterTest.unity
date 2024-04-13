@@ -171,6 +171,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 346909849844005738, guid: 185b5f1fb44c1fa4084263aef0c49665, type: 3}
+      propertyPath: maxTimerDuration
+      value: 50
+      objectReference: {fileID: 0}
     - target: {fileID: 2402156114260201460, guid: 185b5f1fb44c1fa4084263aef0c49665, type: 3}
       propertyPath: m_Name
       value: Battlefield
@@ -510,6 +514,10 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1635043320}
+    - target: {fileID: 3996366283508736829, guid: 4cdd5e56db6608a45917475078c4a3c0, type: 3}
+      propertyPath: data.speed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 4662372159378279789, guid: 4cdd5e56db6608a45917475078c4a3c0, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
