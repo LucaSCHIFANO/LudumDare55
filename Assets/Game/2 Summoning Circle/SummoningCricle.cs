@@ -20,7 +20,7 @@ public class SummoningCricle : MonoBehaviour
     [SerializeField] private SummonType summonType;
     [SerializeField, HideIf(nameof(summonType), SummonType.CONTACT)] private float summonCastTime;
 
-    public UnityEvent onSummonEntity;
+    public UnityEvent<SummoningCricle, SkeletonData> onSummonEntity;
 
     private List<Summonable> entitiesToSummon = new List<Summonable>();
     private float castTimer = 0f;
@@ -84,9 +84,12 @@ public class SummoningCricle : MonoBehaviour
 
     private void Summon()
     {
-        entitiesToSummon.ForEach(s => s.GetSummoned());
+        foreach (var entity in entitiesToSummon)
+        {
+            entity.GetSummoned();
+            onSummonEntity.Invoke(this, entity.Data);
+        }
 
-        onSummonEntity.Invoke();
         Destroy(gameObject);
     }
 }

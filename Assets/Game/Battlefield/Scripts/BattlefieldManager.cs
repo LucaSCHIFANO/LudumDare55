@@ -26,6 +26,8 @@ public class BattlefieldManager : MonoBehaviour
 
     [SerializeField] private float timeBetweenSkeletonSpawn;
     private float currentTimeBetweenSkeletonSpawn;
+
+    private bool isGameOver = false;
     
 
     void Awake()
@@ -47,10 +49,17 @@ public class BattlefieldManager : MonoBehaviour
 
     void Update()
     {
-        if(currentTimerDuration > 0)
+        if (isGameOver == true) return;
+
+        if (currentTimerDuration > 0)
         {
             currentTimerDuration -= Time.deltaTime;
             updatePaladinPosition();
+        }
+        else
+        {
+            Time.timeScale = 0;
+            isGameOver = true;
         }
 
         if (skeletonWaitingToSpawn.Count > 0 && currentTimeBetweenSkeletonSpawn <= 0) 
