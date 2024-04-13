@@ -3,6 +3,8 @@ using UnityEngine.InputSystem;
 
 public class CharacterController : MonoBehaviour
 {
+    [SerializeField] private FollowTargetPosition cameraFollow;
+
     [Header("Movement")]
     [SerializeField] private float movementSpeed = 5;
     private Vector3 direction;
@@ -22,7 +24,10 @@ public class CharacterController : MonoBehaviour
     {
         summonable = GetComponent<Summonable>();
         summonable.onGetSummoned.AddListener(OnSummoned);
+        summonable.onGetSummoned.AddListener(() => cameraFollow.SetTarget(null));
+
         summonable.onGetReturned.AddListener(OnReturn);
+        summonable.onGetReturned.AddListener(() => cameraFollow.SetTarget(transform));
     }
 
     private void Update()
@@ -85,6 +90,9 @@ public class CharacterController : MonoBehaviour
     private void OnDestroy()
     {
         summonable.onGetSummoned.RemoveListener(OnSummoned);
+        summonable.onGetSummoned.RemoveListener(() => cameraFollow.SetTarget(null));
+
         summonable.onGetReturned.RemoveListener(OnReturn);
+        summonable.onGetReturned.RemoveListener(() => cameraFollow.SetTarget(transform));
     }
 }
