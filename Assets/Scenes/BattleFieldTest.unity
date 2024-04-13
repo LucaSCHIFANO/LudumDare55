@@ -251,11 +251,17 @@ Camera:
   m_OcclusionCulling: 1
   m_StereoConvergence: 10
   m_StereoSeparation: 0.022
---- !u!4 &357162328 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 80172940179516242, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+--- !u!114 &357162331 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
   m_PrefabInstance: {fileID: 362420394}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f76afa3e143dd643a1e4d13eb6e2f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &362420394
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -303,6 +309,22 @@ PrefabInstance:
     - target: {fileID: 80172940179516242, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.speed
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.experience
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.increaseTimeValue
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.isValueOnPercentage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2181502854457450368, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
       propertyPath: m_Name
@@ -397,11 +419,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &473396555 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 80172940179516242, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
-  m_PrefabInstance: {fileID: 1230509545}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &548591064
 GameObject:
   m_ObjectHideFlags: 0
@@ -638,12 +655,11 @@ MonoBehaviour:
   maxTimerDuration: 3
   skeletonSpawnPoint: {fileID: 635135706}
   skeletonWaitingToSpawn:
-  - {fileID: 473396555}
-  - {fileID: 357162328}
-  - {fileID: 1356058800}
-  - {fileID: 1633733561}
-  timeBetweenSkeletonSpawn: 1
-  skeletonSpeed: 0.5
+  - {fileID: 1150923715}
+  - {fileID: 357162331}
+  - {fileID: 2044022101}
+  - {fileID: 1633733564}
+  timeBetweenSkeletonSpawn: 1.5
 --- !u!1 &635135705
 GameObject:
   m_ObjectHideFlags: 0
@@ -951,6 +967,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.speed
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.experience
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.increaseTimeValue
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.isValueOnPercentage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2181502854457450368, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
       propertyPath: m_Name
       value: NPCSkeleton (3)
@@ -960,6 +992,17 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+--- !u!114 &1150923715 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+  m_PrefabInstance: {fileID: 1230509545}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f76afa3e143dd643a1e4d13eb6e2f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1180667701
 GameObject:
   m_ObjectHideFlags: 0
@@ -1075,6 +1118,22 @@ PrefabInstance:
     - target: {fileID: 80172940179516242, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.speed
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.experience
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.increaseTimeValue
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.isValueOnPercentage
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2181502854457450368, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
       propertyPath: m_Name
@@ -1271,11 +1330,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1356058800 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 80172940179516242, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
-  m_PrefabInstance: {fileID: 1764427042}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1377817015
 GameObject:
   m_ObjectHideFlags: 0
@@ -1394,11 +1448,17 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!4 &1633733561 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 80172940179516242, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+--- !u!114 &1633733564 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
   m_PrefabInstance: {fileID: 1122852787}
   m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f76afa3e143dd643a1e4d13eb6e2f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1636475187
 GameObject:
   m_ObjectHideFlags: 0
@@ -1519,6 +1579,22 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.speed
+      value: 0.15
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.experience
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.increaseTimeValue
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: data.isValueOnPercentage
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2181502854457450368, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
       propertyPath: m_Name
       value: NPCSkeleton (2)
@@ -1561,6 +1637,17 @@ Transform:
   - {fileID: 1295275741}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2044022101 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+  m_PrefabInstance: {fileID: 1764427042}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f76afa3e143dd643a1e4d13eb6e2f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

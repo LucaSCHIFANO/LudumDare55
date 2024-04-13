@@ -21,8 +21,8 @@ public class BattlefieldManager : MonoBehaviour
 
     [Header("Spawn")]
     [SerializeField] private Transform skeletonSpawnPoint;
-    private List<Transform> skeletonWaitingToSpawn = new List<Transform>();
-    private List<Transform> skeletonSpawned = new List<Transform>();
+    private List<Summonable> skeletonWaitingToSpawn = new List<Summonable>();
+    private List<Summonable> skeletonSpawned = new List<Summonable>();
 
     [SerializeField] private float timeBetweenSkeletonSpawn;
     private float currentTimeBetweenSkeletonSpawn;

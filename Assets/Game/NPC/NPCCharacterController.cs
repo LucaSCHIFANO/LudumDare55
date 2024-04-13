@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -15,7 +16,7 @@ public class NPCCharacterController : MonoBehaviour
     private MovementState moveState = MovementState.IDLE;
     private Vector3 targetPoint;
     private float wanderTimer = 0f;
-    private bool isSummoned = false;
+    private bool isSummoned = true;
     private Summonable summon;
 
     private void Start()
