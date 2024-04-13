@@ -19,6 +19,7 @@ public class CharacterController : MonoBehaviour
     private Summonable summonable;
     private bool isSummoned = false;
     private Vector3 summonedPosition;
+    [SerializeField] private Animator animator;
 
     private void Start()
     {
@@ -51,7 +52,14 @@ public class CharacterController : MonoBehaviour
             transform.position += Time.deltaTime * movementSpeed * direction;
 
             if (direction.sqrMagnitude > .5)
+            {
+                animator.SetBool("IsMoving", true);
                 dashDirection = direction;
+            }
+            else
+            {
+                animator.SetBool("IsMoving", false);
+            }
         }
     }
 
@@ -77,12 +85,14 @@ public class CharacterController : MonoBehaviour
 
     private void OnSummoned()
     {
+        animator.SetTrigger("IsSummoned");
         summonedPosition = transform.position;
         isSummoned = true;
     }
 
     private void OnReturn()
     {
+        animator.SetTrigger("IsReturned");
         transform.position = summonedPosition;
         isSummoned = false;
     }
