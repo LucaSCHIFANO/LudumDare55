@@ -48,8 +48,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
-  movementSpeed: 2
   moveType: 2
+  movementSpeed: 2
+  level: 1
+  summonType: 0
+  summonCastTime: 0
   onSummonEntity:
     m_PersistentCalls:
       m_Calls: []

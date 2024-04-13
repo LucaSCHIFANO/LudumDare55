@@ -10,7 +10,7 @@ public class BattlefieldManager : MonoBehaviour
 
     [Header("GameObject")]
     [SerializeField] private GameObject wizard;  
-    [SerializeField] private GameObject paladin;
+    [SerializeField] private Paladin paladin;
     private Vector3 wizardStartingPoint;
     private Vector3 paladinStartingPoint;
     private Vector3 paladinToWizardvector;
@@ -42,6 +42,11 @@ public class BattlefieldManager : MonoBehaviour
         currentTimerDuration = maxTimerDuration;
     }
 
+    private void Start()
+    {
+        paladin.OnSummonCollision += RemoveSkeleton;
+    }
+
     void Update()
     {
         if (isGameOver == true) return;
@@ -71,6 +76,11 @@ public class BattlefieldManager : MonoBehaviour
         currentTimeBetweenSkeletonSpawn -= Time.deltaTime;
     }
 
+    private void OnDestroy()
+    {
+        paladin.OnSummonCollision -= RemoveSkeleton;
+    }
+
     private void updatePaladinPosition()
     {
         float timerNormalized = currentTimerDuration / maxTimerDuration;
@@ -90,7 +100,6 @@ public class BattlefieldManager : MonoBehaviour
     public void SummonSkeleton(Summonable npc)
     {
         skeletonWaitingToSpawn.Add(npc);
-        npc.onGetReturned.AddListener(() => RemoveSkeleton(npc));
     }
 
     private void MoveSkeletons()
@@ -104,6 +113,5 @@ public class BattlefieldManager : MonoBehaviour
     private void RemoveSkeleton(Summonable npc)
     {
         skeletonSpawned.Remove(npc);
-        npc.onGetReturned.RemoveListener(() => RemoveSkeleton(npc));
     }
 }
