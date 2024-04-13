@@ -88,7 +88,7 @@ public class BattlefieldManager : MonoBehaviour
     {
         for (int i = 0; i < skeletonSpawned.Count; ++i)
         {
-            skeletonSpawned[i].transform.position += new Vector3(skeletonSpawned[i].Data.speed, 0, 0);
+            skeletonSpawned[i].transform.position += new Vector3(skeletonSpawned[i].Data.speed * Time.deltaTime, 0, 0);
         }
     }
 
