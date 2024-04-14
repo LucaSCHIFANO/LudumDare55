@@ -28,9 +28,18 @@ public class SummoningCricle : PoolItem
 
     [SerializeField] private Transform target;
     [SerializeField] private SpriteRenderer visualRenderer;
+
+    [Header("Animation")]
+    [SerializeField] private float rotationSpeed;
+    [SerializeField] private SpriteRenderer flamesRenderer;
+    [SerializeField] private Animator animator;
+    [SerializeField, AnimatorParam(nameof(animator), AnimatorControllerParameterType.Trigger)] private string flameSummonTriggerName;
+    [SerializeField] private float flameSummonDuration;
     
     public UnityEvent<SummoningCricle, SummonData> onSummonEntity = new UnityEvent<SummoningCricle, SummonData>();
     public UnityEvent<SummoningCricle> onSummon = new UnityEvent<SummoningCricle>();
+
+    private UnityEvent<int> onEntitySummonCountChange = new UnityEvent<int>();
 
     private MovementType moveType;
     private float movementSpeed;
@@ -42,8 +51,18 @@ public class SummoningCricle : PoolItem
     private float castTimer = 0f;
     private bool useCastTimer;
 
+    private bool hasSummoned;
+
+    private void Start()
+    {
+        onEntitySummonCountChange.AddListener(AnimateFlames);
+    }
+
     private void Update()   
     {
+        Animate();
+        if (hasSummoned) return;
+
         Move();
         if (!useCastTimer) return;
 
@@ -66,6 +85,7 @@ public class SummoningCricle : PoolItem
             target = summonable.transform;
 
         entitiesToSummon.Add(summonable);
+        onEntitySummonCountChange.Invoke(entitiesToSummon.Count);
 
         // Summon on contact
         if (summonType == SummonType.CONTACT)
@@ -81,12 +101,14 @@ public class SummoningCricle : PoolItem
         if (!entitiesToSummon.Contains(summonable)) return;
 
         entitiesToSummon.Remove(summonable);
+        onEntitySummonCountChange.Invoke(entitiesToSummon.Count);
     }
 
     public void Init(Transform target, int level, Data circleData)
     {
         this.target = target;
         this.level = level;
+        hasSummoned = false;
 
         moveType = circleData.MoveType;
         movementSpeed = circleData.MoveSpeed;
@@ -97,8 +119,11 @@ public class SummoningCricle : PoolItem
         castTimer = circleData.CastTime;
 
         transform.localScale = Vector3.one * circleData.Size;
+        visualRenderer.transform.rotation = Quaternion.identity;
         visualRenderer.sprite = circleData.Sprite;
         visualRenderer.color = circleData.Color;
+
+        flamesRenderer.enabled = false;
 
         gameObject.SetActive(true);
     }
@@ -120,6 +145,9 @@ public class SummoningCricle : PoolItem
 
     private void Summon()
     {
+        hasSummoned = true;
+        AnimateFlames(entitiesToSummon.Count); // In case of no entity left when summoning. Force Display Flames
+
         foreach (var entity in entitiesToSummon)
         {
             entity.GetSummoned();
@@ -127,6 +155,24 @@ public class SummoningCricle : PoolItem
         }
 
         onSummon.Invoke(this);
+        StartCoroutine(SummonAnimationWaitReturnRoutine());
+    }
+
+    private IEnumerator SummonAnimationWaitReturnRoutine()
+    {
+        animator.SetTrigger(flameSummonTriggerName);
+        yield return new WaitForSeconds(flameSummonDuration);
         ReturnToPool();
+    }
+
+    private void Animate()
+    {
+        if (!useCastTimer) return;
+        visualRenderer.transform.Rotate(Vector3.forward * Time.deltaTime * rotationSpeed);
+    }
+
+    private void AnimateFlames(int summonCount)
+    {
+        flamesRenderer.enabled = hasSummoned || summonCount > 0;
     }
 }
