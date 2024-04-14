@@ -97,7 +97,9 @@ public class NPCCharacterController : MonoBehaviour
     
     private void OnReturn()
     {
+        animator.ResetTrigger("Attack");
         animator.SetTrigger("Idle");
+        isSummoned = false;
         summon.ReturnToPool();
         gameObject.SetActive(false);
     }

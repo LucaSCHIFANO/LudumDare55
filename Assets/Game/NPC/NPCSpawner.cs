@@ -10,7 +10,6 @@ public class NPCSpawner : MonoBehaviour
     [SerializeField] private int startSpawnAmount = 8;
     private Pool<Summonable> pool;
     private float timer = 0;
-    private bool isSpawning = false;
     int spawnCount = 0;
 
     private void Start()
@@ -25,13 +24,12 @@ public class NPCSpawner : MonoBehaviour
 
     private void OnSkeletonSummoned()
     {
-        isSpawning = true;
         spawnCount++;
     }
 
     private void Update()
     {
-        if (!isSpawning) return;
+        if (spawnCount ==0) return;
 
         timer -= Time.deltaTime;
         if(timer <= 0)
@@ -39,11 +37,6 @@ public class NPCSpawner : MonoBehaviour
             timer = spawnTime;
             SpawnSkeleton();
             spawnCount--;
-            if(spawnCount <= 0)
-            {
-                spawnCount = 0;
-                isSpawning = false;
-            }
         }
     }
 
@@ -51,7 +44,9 @@ public class NPCSpawner : MonoBehaviour
     {
         int rand = UnityEngine.Random.Range(0, spawnPoints.Length);
         Vector3 position = spawnPoints[rand].position + new Vector3(UnityEngine.Random.Range(-spawnRadius, spawnRadius), UnityEngine.Random.Range(-spawnRadius, spawnRadius), 0);
-        pool.Get(position).onGetSummoned.AddListener(OnSkeletonSummoned);
+        Summonable skully = pool.Get(position);
+        skully.gameObject.SetActive(true);
+        skully.onGetSummoned.AddListener(OnSkeletonSummoned);
     }
 
     private void OnDrawGizmosSelected()
