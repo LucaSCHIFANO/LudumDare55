@@ -20,7 +20,7 @@ public class SummoningCricle : PoolItem
     [SerializeField] private SummonType summonType;
     [SerializeField, HideIf(nameof(summonType), SummonType.CONTACT)] private float summonCastTime;
 
-    public UnityEvent<SummoningCricle, SkeletonData> onSummonEntity;
+    public UnityEvent<SummoningCricle, SummonData> onSummonEntity;
 
     private List<Summonable> entitiesToSummon = new List<Summonable>();
     private float castTimer = 0f;
