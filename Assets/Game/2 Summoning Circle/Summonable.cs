@@ -8,6 +8,7 @@ public class Summonable : PoolItem
     [SerializeField, Min(1)] private int minimumSummonLevel = 1;
     [SerializeField] private SummonData data;
     [SerializeField] private float summonedAnimaitionTime;
+    [SerializeField] private GameObject fireParticles;
 
     public UnityEvent onGetSummoned;
     public UnityEvent onGetReturned;
@@ -22,6 +23,7 @@ public class Summonable : PoolItem
     public void GetSummoned()
     {
         onGetSummoned.Invoke();
+        Instantiate(fireParticles, transform.position, Quaternion.identity);
         StartCoroutine(WaitForAnimation());
 
         IEnumerator WaitForAnimation()

@@ -136,7 +136,7 @@ MonoBehaviour:
   animator: {fileID: 6963761447382333742}
   wallLayer:
     serializedVersion: 2
-    m_Bits: 0
+    m_Bits: 64
 --- !u!114 &596097457238438019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -291,11 +291,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimumSummonLevel: 1
   data:
-    speed: 0.5
+    speed: 3
     increaseTimeValue: 5
     isValueOnPercentage: 0
     experience: 1
   summonedAnimaitionTime: 1.1
+  fireParticles: {fileID: 2674606997865827587, guid: 0b8426f19acc3104f9c6a2594df63d2c, type: 3}
   onGetSummoned:
     m_PersistentCalls:
       m_Calls: []

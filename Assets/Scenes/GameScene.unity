@@ -8145,10 +8145,6 @@ PrefabInstance:
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
       objectReference: {fileID: 0}
-    - target: {fileID: 3996366283508736829, guid: 4cdd5e56db6608a45917475078c4a3c0, type: 3}
-      propertyPath: data.speed
-      value: 3
-      objectReference: {fileID: 0}
     - target: {fileID: 4662372159378279789, guid: 4cdd5e56db6608a45917475078c4a3c0, type: 3}
       propertyPath: m_LocalPosition.y
       value: 1
@@ -8165,10 +8161,6 @@ PrefabInstance:
       propertyPath: cameraFollow
       value: 
       objectReference: {fileID: 942048294}
-    - target: {fileID: 7875950088065230577, guid: 4cdd5e56db6608a45917475078c4a3c0, type: 3}
-      propertyPath: wallLayer.m_Bits
-      value: 64
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
