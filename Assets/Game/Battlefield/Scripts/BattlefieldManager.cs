@@ -27,7 +27,9 @@ public class BattlefieldManager : MonoBehaviour
     [SerializeField] private float timeBetweenSkeletonSpawn;
     private float currentTimeBetweenSkeletonSpawn;
 
+    [Header("GameOver")]
     private bool isGameOver = false;
+    [SerializeField] private GameObject goScrenn;
     
 
     void Awake()
@@ -59,6 +61,7 @@ public class BattlefieldManager : MonoBehaviour
         else
         {
             Time.timeScale = 0;
+            goScrenn.SetActive(true);
             isGameOver = true;
         }
 
