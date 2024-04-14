@@ -1,6 +1,8 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,7 +10,7 @@ public class SummoningCircleManager : MonoBehaviour
 {
     [SerializeField] private SummoningCricle circlePrefab;
     [SerializeField] private SkullyController player;
-    [SerializeField] private Transform spawnPoint;
+    [SerializeField, MinMaxSlider(0f, 20f)] private Vector2 circleSpawnRadius;
 
     private Pool<SummoningCricle> circlePool;
 
@@ -21,7 +23,8 @@ public class SummoningCircleManager : MonoBehaviour
     private float currentExperience;
     private int currentLevel;
 
-    [SerializeField] private Image ExpBar;
+    [SerializeField] private Image expBar;
+    [SerializeField] private TextMeshProUGUI expText;
 
     private void Awake()
     {
@@ -33,32 +36,37 @@ public class SummoningCircleManager : MonoBehaviour
         circlePool = new Pool<SummoningCricle>(circlePrefab);
         if (player == null)
             player = FindFirstObjectByType<SkullyController>();
-        NewSummonCircle();
+        SpawnCircle(LevelThreshold[currentLevel]);
     }
 
     private void Update()
     {
         currentCircleCooldown -= Time.deltaTime;
-        if (currentCircleCooldown < 0 && activeCircleCounter < LevelThreshold[currentLevel].maxCircleNumber) NewSummonCircle();
+        if (currentCircleCooldown < 0 && activeCircleCounter < LevelThreshold[currentLevel].maxCircleNumber) SpawnCircle(LevelThreshold[currentLevel]);
     }
 
-    // A Summon Happened
-    private void NewSummon(SummoningCricle circle, SkeletonData data)
+    private void OnEntitySummon(SummoningCricle circle, SummonData data)
     {
-        activeCircleCounter--;
-        circle.onSummonEntity.RemoveListener(NewSummon);
+        circle.onSummonEntity.RemoveListener(OnEntitySummon);
         IncreaseExperience(data.experience);
     }
 
-    // Instantiate new circle
-    private void NewSummonCircle()
+    private void OnCircleSummon(SummoningCricle circle)
+    {
+        activeCircleCounter--;
+        circle.onSummon.RemoveListener(OnCircleSummon);
+    }
+
+    private void SpawnCircle(CircleLevel level)
     {
         activeCircleCounter++;
         currentCircleCooldown = circleCooldown;
 
-        SummoningCricle currentCircle = circlePool.Get(spawnPoint);
-        currentCircle.target = player.transform;
-        currentCircle.onSummonEntity.AddListener(NewSummon);
+        SummoningCricle currentCircle = circlePool.Get(MathExtension.RandomPointInsideCircle(player.transform.position, circleSpawnRadius.y, circleSpawnRadius.x));
+        currentCircle.Init(player.transform, currentLevel + 1, level.data);
+
+        currentCircle.onSummonEntity.AddListener(OnEntitySummon);
+        currentCircle.onSummon.AddListener(OnCircleSummon);
     }
 
     private void IncreaseExperience(float exp)
@@ -72,9 +80,11 @@ public class SummoningCircleManager : MonoBehaviour
         }
 
         if (currentLevel != LevelThreshold.Count - 1)
-            ExpBar.fillAmount = (currentExperience - LevelThreshold[currentLevel].experience) / 
+            expBar.fillAmount = (currentExperience - LevelThreshold[currentLevel].experience) / 
                 (LevelThreshold[currentLevel + 1].experience - LevelThreshold[currentLevel].experience);
-        else ExpBar.fillAmount = 1;
+        else expBar.fillAmount = 1;
+
+        expText.text = $"Lvl. {currentLevel+1}";
     }
 }
 
@@ -82,6 +92,7 @@ public class SummoningCircleManager : MonoBehaviour
 public class CircleLevel
 {
     public GameObject circle;
+    public SummoningCricle.Data data;
     public float experience;
     public int maxCircleNumber;
 }

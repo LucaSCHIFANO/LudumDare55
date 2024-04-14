@@ -6,32 +6,41 @@ using UnityEngine.Events;
 
 public class SummoningCricle : PoolItem
 {
-    private enum MovementType { STATIC, FOLLOW, SNAP_FOLLOW }
-    private enum SummonType { CONTACT, TIMER, TIMED_CONTACT }
+    [System.Serializable]
+    public class Data
+    {
+        [Header("Movement")]
+        public MovementType MoveType;
+        [AllowNesting, HideIf(nameof(MoveType), MovementType.STATIC)] public float MoveSpeed;
 
-    public Transform target;
+        [Header("Summons")]
+        [SerializeField] public SummonType SummonType;
+        [SerializeField, AllowNesting, HideIf(nameof(SummonType), SummonType.CONTACT)] public float CastTime;
 
-    [Header("Movement")]
-    [SerializeField] private MovementType moveType;
-    [SerializeField, HideIf(nameof(moveType), MovementType.STATIC)] private float movementSpeed;
+        [Header("Visuals")]
+        [SerializeField] public float Size = 1f;
+        [SerializeField] public Sprite Sprite;
+        [SerializeField] public Color Color = new Color(1f, 1f, 1f);
+    }
 
-    [Header("Summons")]
-    [SerializeField, Min(1)] private int level = 1;
-    [SerializeField] private SummonType summonType;
-    [SerializeField, HideIf(nameof(summonType), SummonType.CONTACT)] private float summonCastTime;
+    public enum MovementType { STATIC, FOLLOW, SNAP_FOLLOW }
+    public enum SummonType { CONTACT, TIMER, TIMED_CONTACT }
 
-    public UnityEvent<SummoningCricle, SkeletonData> onSummonEntity;
+    [SerializeField] private Transform target;
+    [SerializeField] private SpriteRenderer visualRenderer;
+    
+    public UnityEvent<SummoningCricle, SummonData> onSummonEntity = new UnityEvent<SummoningCricle, SummonData>();
+    public UnityEvent<SummoningCricle> onSummon = new UnityEvent<SummoningCricle>();
+
+    private MovementType moveType;
+    private float movementSpeed;
+
+    private int level = 1;
+    private SummonType summonType;
 
     private List<Summonable> entitiesToSummon = new List<Summonable>();
     private float castTimer = 0f;
     private bool useCastTimer;
-
-
-    private void Start()
-    {
-        useCastTimer = summonType == SummonType.TIMER;
-        castTimer = summonCastTime;
-    }
 
     private void Update()   
     {
@@ -74,6 +83,32 @@ public class SummoningCricle : PoolItem
         entitiesToSummon.Remove(summonable);
     }
 
+    public void Init(Transform target, int level, Data circleData)
+    {
+        this.target = target;
+        this.level = level;
+
+        moveType = circleData.MoveType;
+        movementSpeed = circleData.MoveSpeed;
+
+        summonType = circleData.SummonType;
+
+        useCastTimer = summonType == SummonType.TIMER;
+        castTimer = circleData.CastTime;
+
+        transform.localScale = Vector3.one * circleData.Size;
+        visualRenderer.sprite = circleData.Sprite;
+        visualRenderer.color = circleData.Color;
+
+        gameObject.SetActive(true);
+    }
+
+    public override void ReturnToPool()
+    {
+        base.ReturnToPool();
+        gameObject.SetActive(false);
+    }
+
     private void Move()
     {
         if (moveType == MovementType.STATIC) return;
@@ -91,6 +126,7 @@ public class SummoningCricle : PoolItem
             onSummonEntity.Invoke(this, entity.Data);
         }
 
+        onSummon.Invoke(this);
         ReturnToPool();
     }
 }

@@ -6,13 +6,13 @@ using UnityEngine.Events;
 public class Summonable : PoolItem
 {
     [SerializeField, Min(1)] private int minimumSummonLevel = 1;
-    [SerializeField] private SkeletonData data;
+    [SerializeField] private SummonData data;
     [SerializeField] private float summonedAnimaitionTime;
 
     public UnityEvent onGetSummoned;
     public UnityEvent onGetReturned;
 
-    public SkeletonData Data { get => data; }
+    public SummonData Data { get => data; }
 
     public bool CanBeSummoned(int magicLevel)
     {
@@ -39,7 +39,7 @@ public class Summonable : PoolItem
 
 
 [Serializable]
-public class SkeletonData
+public class SummonData
 {
     public float speed;
     public float increaseTimeValue;
