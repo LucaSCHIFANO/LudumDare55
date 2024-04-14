@@ -3,7 +3,7 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class Summonable : MonoBehaviour
+public class Summonable : PoolItem
 {
     [SerializeField, Min(1)] private int minimumSummonLevel = 1;
     [SerializeField] private SummonData data;

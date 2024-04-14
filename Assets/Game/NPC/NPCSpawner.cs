@@ -8,12 +8,14 @@ public class NPCSpawner : MonoBehaviour
     [SerializeField] private Summonable skeleton;
     [SerializeField] private float spawnTime = 2;
     [SerializeField] private int startSpawnAmount = 8;
+    private Pool<Summonable> pool;
     private float timer = 0;
     private bool isSpawning = false;
     int spawnCount = 0;
 
     private void Start()
     {
+        pool = new Pool<Summonable>(skeleton);
         for (int i = 0; i < startSpawnAmount; i++)
         {
             SpawnSkeleton();
@@ -47,8 +49,9 @@ public class NPCSpawner : MonoBehaviour
 
     private void SpawnSkeleton()
     {
-        Vector3 position = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)].position + new Vector3(UnityEngine.Random.Range(-spawnRadius, spawnRadius), UnityEngine.Random.Range(-spawnRadius, spawnRadius), 0);
-        Instantiate<Summonable>(skeleton, position, Quaternion.identity).onGetSummoned.AddListener(OnSkeletonSummoned);
+        int rand = UnityEngine.Random.Range(0, spawnPoints.Length);
+        Vector3 position = spawnPoints[rand].position + new Vector3(UnityEngine.Random.Range(-spawnRadius, spawnRadius), UnityEngine.Random.Range(-spawnRadius, spawnRadius), 0);
+        pool.Get(position).onGetSummoned.AddListener(OnSkeletonSummoned);
     }
 
     private void OnDrawGizmosSelected()
