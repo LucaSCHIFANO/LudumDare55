@@ -45,7 +45,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7625d7adb5e2ab94ca1dc4325c2713a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pauseMenu: {fileID: 0}
+  pauseMenu: {fileID: 2513546707943932097}
+  masterVolume: {fileID: 0}
+  canPause: 0
 --- !u!1 &2513546707943932097
 GameObject:
   m_ObjectHideFlags: 0
