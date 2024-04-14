@@ -1767,24 +1767,40 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 1532346621}
     - target: {fileID: 346909849844005738, guid: 185b5f1fb44c1fa4084263aef0c49665, type: 3}
-      propertyPath: goScrenn
-      value: 
-      objectReference: {fileID: 1532346620}
-    - target: {fileID: 346909849844005738, guid: 185b5f1fb44c1fa4084263aef0c49665, type: 3}
       propertyPath: winScreen
       value: 
       objectReference: {fileID: 535501164}
-    - target: {fileID: 346909849844005738, guid: 185b5f1fb44c1fa4084263aef0c49665, type: 3}
-      propertyPath: maxTimerDuration
-      value: 50
-      objectReference: {fileID: 0}
     - target: {fileID: 2402156114260201460, guid: 185b5f1fb44c1fa4084263aef0c49665, type: 3}
       propertyPath: m_Name
       value: Battlefield
       objectReference: {fileID: 0}
-    - target: {fileID: 7770568012421602214, guid: 185b5f1fb44c1fa4084263aef0c49665, type: 3}
-      propertyPath: m_AdditionalShaderChannelsFlag
-      value: 25
+    - target: {fileID: 3395282530535253594, guid: 185b5f1fb44c1fa4084263aef0c49665, type: 3}
+      propertyPath: m_AnchorMax.x
+      value: 0.057250008
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395282530535253594, guid: 185b5f1fb44c1fa4084263aef0c49665, type: 3}
+      propertyPath: m_AnchorMax.y
+      value: 0.93900007
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395282530535253594, guid: 185b5f1fb44c1fa4084263aef0c49665, type: 3}
+      propertyPath: m_AnchorMin.y
+      value: 0.915
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395282530535253594, guid: 185b5f1fb44c1fa4084263aef0c49665, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: -1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395282530535253594, guid: 185b5f1fb44c1fa4084263aef0c49665, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: -2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395282530535253594, guid: 185b5f1fb44c1fa4084263aef0c49665, type: 3}
+      propertyPath: m_AnchoredPosition.x
+      value: -0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 3395282530535253594, guid: 185b5f1fb44c1fa4084263aef0c49665, type: 3}
+      propertyPath: m_AnchoredPosition.y
+      value: -0.6000061
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -5608,17 +5624,12 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d14776dcf2f8cdf4eaa551703262e648, type: 3}
---- !u!1 &1532346620 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 542288306819407362, guid: d14776dcf2f8cdf4eaa551703262e648, type: 3}
-  m_PrefabInstance: {fileID: 1532346619}
-  m_PrefabAsset: {fileID: 0}
 --- !u!114 &1532346621 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 274076161398694087, guid: d14776dcf2f8cdf4eaa551703262e648, type: 3}
   m_PrefabInstance: {fileID: 1532346619}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1532346620}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 83e35085d3b73e44dbc4bd2acb0085a4, type: 3}
