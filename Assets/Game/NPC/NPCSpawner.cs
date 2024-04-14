@@ -47,8 +47,9 @@ public class NPCSpawner : MonoBehaviour
 
     private void SpawnSkeleton()
     {
-        Vector3 position = spawnPoints[UnityEngine.Random.Range(0, spawnPoints.Length)].position + new Vector3(UnityEngine.Random.Range(-spawnRadius, spawnRadius), UnityEngine.Random.Range(-spawnRadius, spawnRadius), 0);
-        Instantiate<Summonable>(skeleton, position, Quaternion.identity).onGetSummoned.AddListener(OnSkeletonSummoned);
+        int rand = UnityEngine.Random.Range(0, spawnPoints.Length);
+        Vector3 position = spawnPoints[rand].position + new Vector3(UnityEngine.Random.Range(-spawnRadius, spawnRadius), UnityEngine.Random.Range(-spawnRadius, spawnRadius), 0);
+        Instantiate<Summonable>(skeleton, position, Quaternion.identity, spawnPoints[rand]).onGetSummoned.AddListener(OnSkeletonSummoned);
     }
 
     private void OnDrawGizmosSelected()
