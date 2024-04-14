@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -21,7 +22,8 @@ public class SummoningCircleManager : MonoBehaviour
     private float currentExperience;
     private int currentLevel;
 
-    [SerializeField] private Image ExpBar;
+    [SerializeField] private Image expBar;
+    [SerializeField] private TextMeshProUGUI expText;
 
     private void Awake()
     {
@@ -71,9 +73,11 @@ public class SummoningCircleManager : MonoBehaviour
         }
 
         if (currentLevel != LevelThreshold.Count - 1)
-            ExpBar.fillAmount = (currentExperience - LevelThreshold[currentLevel].experience) / 
+            expBar.fillAmount = (currentExperience - LevelThreshold[currentLevel].experience) / 
                 (LevelThreshold[currentLevel + 1].experience - LevelThreshold[currentLevel].experience);
-        else ExpBar.fillAmount = 1;
+        else expBar.fillAmount = 1;
+
+        expText.text = $"Lvl. {currentLevel+1}";
     }
 }
 
