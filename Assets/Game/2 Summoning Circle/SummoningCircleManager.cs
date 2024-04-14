@@ -7,12 +7,14 @@ using UnityEngine.UI;
 public class SummoningCircleManager : MonoBehaviour
 {
     [SerializeField] private SummoningCricle circlePrefab;
-    private List<SummoningCricle> circleList = new List<SummoningCricle>();
     [SerializeField] private SkullyController player;
     [SerializeField] private Transform spawnPoint;
 
+    private Pool<SummoningCricle> circlePool;
+
     [SerializeField] private float circleCooldown;
     private float currentCircleCooldown;
+    private int activeCircleCounter = 0;
     
     [Header("Experience")]
     [SerializeField] private List<CircleLevel> LevelThreshold = new List<CircleLevel>();
@@ -28,7 +30,8 @@ public class SummoningCircleManager : MonoBehaviour
 
     private void Start()
     {
-        if(player == null)
+        circlePool = new Pool<SummoningCricle>(circlePrefab);
+        if (player == null)
             player = FindFirstObjectByType<SkullyController>();
         NewSummonCircle();
     }
@@ -36,20 +39,24 @@ public class SummoningCircleManager : MonoBehaviour
     private void Update()
     {
         currentCircleCooldown -= Time.deltaTime;
-        if (currentCircleCooldown < 0 && circleList.Count < LevelThreshold[currentLevel].maxCircleNumber) NewSummonCircle();
+        if (currentCircleCooldown < 0 && activeCircleCounter < LevelThreshold[currentLevel].maxCircleNumber) NewSummonCircle();
     }
 
+    // A Summon Happened
     private void NewSummon(SummoningCricle circle, SkeletonData data)
     {
-        circleList.Remove(circle);
+        activeCircleCounter--;
+        circle.onSummonEntity.RemoveListener(NewSummon);
         IncreaseExperience(data.experience);
     }
 
+    // Instantiate new circle
     private void NewSummonCircle()
     {
+        activeCircleCounter++;
         currentCircleCooldown = circleCooldown;
-        SummoningCricle currentCircle = Instantiate<SummoningCricle>(circlePrefab, spawnPoint);
-        circleList.Add(currentCircle);
+
+        SummoningCricle currentCircle = circlePool.Get(spawnPoint);
         currentCircle.target = player.transform;
         currentCircle.onSummonEntity.AddListener(NewSummon);
     }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class SummoningCricle : MonoBehaviour
+public class SummoningCricle : PoolItem
 {
     private enum MovementType { STATIC, FOLLOW, SNAP_FOLLOW }
     private enum SummonType { CONTACT, TIMER, TIMED_CONTACT }
@@ -25,6 +25,7 @@ public class SummoningCricle : MonoBehaviour
     private List<Summonable> entitiesToSummon = new List<Summonable>();
     private float castTimer = 0f;
     private bool useCastTimer;
+
 
     private void Start()
     {
@@ -90,6 +91,6 @@ public class SummoningCricle : MonoBehaviour
             onSummonEntity.Invoke(this, entity.Data);
         }
 
-        Destroy(gameObject);
+        ReturnToPool();
     }
 }
