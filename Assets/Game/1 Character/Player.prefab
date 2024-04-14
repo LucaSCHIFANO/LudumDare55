@@ -292,6 +292,7 @@ MonoBehaviour:
     increaseTimeValue: 5
     isValueOnPercentage: 0
     experience: 1
+  summonedAnimaitionTime: 1.1
   onGetSummoned:
     m_PersistentCalls:
       m_Calls: []
