@@ -129,7 +129,7 @@ MonoBehaviour:
     increaseTimeValue: 10
     isValueOnPercentage: 0
     experience: 1
-  summonedAnimaitionTime: 0
+  summonedAnimaitionTime: 1
   onGetSummoned:
     m_PersistentCalls:
       m_Calls: []
@@ -224,7 +224,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &7768469492213881083
 Transform:
   m_ObjectHideFlags: 0
@@ -391,7 +391,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: -8653719598885068355, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: -7552582706839291426, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
       propertyPath: m_LocalScale.x
