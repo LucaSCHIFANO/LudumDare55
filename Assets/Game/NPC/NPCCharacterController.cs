@@ -25,6 +25,7 @@ public class NPCCharacterController : MonoBehaviour
     {
         summon = GetComponent<Summonable>();
         summon.onGetSummoned.AddListener(OnSummon);
+        summon.onGetReturned.AddListener(OnReturn);
         wanderTimer = wanderCooldown + UnityEngine.Random.Range(-1.5f, 2);
         if (wanderPatrolCenter == null)
             wanderPatrolCenter = transform;
@@ -39,6 +40,7 @@ public class NPCCharacterController : MonoBehaviour
     private void OnDisable()
     {
         summon.onGetSummoned.RemoveListener(OnSummon);
+        summon.onGetReturned.RemoveListener(OnReturn);
     }
 
     private void RealmUpdate()
@@ -89,6 +91,14 @@ public class NPCCharacterController : MonoBehaviour
 
     private void OnSummon()
     {
+        animator.SetTrigger("Attack");
         isSummoned = true;
+    }
+    
+    private void OnReturn()
+    {
+        animator.SetTrigger("Idle");
+        summon.ReturnToPool();
+        gameObject.SetActive(false);
     }
 }
