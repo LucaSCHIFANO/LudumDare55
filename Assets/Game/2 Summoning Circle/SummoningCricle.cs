@@ -32,6 +32,9 @@ public class SummoningCricle : PoolItem
     [Header("Animation")]
     [SerializeField] private float rotationSpeed;
     [SerializeField] private SpriteRenderer flamesRenderer;
+    [SerializeField] private Animator animator;
+    [SerializeField, AnimatorParam(nameof(animator), AnimatorControllerParameterType.Trigger)] private string flameSummonTriggerName;
+    [SerializeField] private float flameSummonDuration;
     
     public UnityEvent<SummoningCricle, SummonData> onSummonEntity = new UnityEvent<SummoningCricle, SummonData>();
     public UnityEvent<SummoningCricle> onSummon = new UnityEvent<SummoningCricle>();
@@ -48,6 +51,8 @@ public class SummoningCricle : PoolItem
     private float castTimer = 0f;
     private bool useCastTimer;
 
+    private bool hasSummoned;
+
     private void Start()
     {
         onEntitySummonCountChange.AddListener(AnimateFlames);
@@ -55,8 +60,10 @@ public class SummoningCricle : PoolItem
 
     private void Update()   
     {
-        Move();
         Animate();
+        if (hasSummoned) return;
+
+        Move();
         if (!useCastTimer) return;
 
         if(castTimer <= 0f)
@@ -101,6 +108,7 @@ public class SummoningCricle : PoolItem
     {
         this.target = target;
         this.level = level;
+        hasSummoned = false;
 
         moveType = circleData.MoveType;
         movementSpeed = circleData.MoveSpeed;
@@ -137,6 +145,9 @@ public class SummoningCricle : PoolItem
 
     private void Summon()
     {
+        hasSummoned = true;
+        AnimateFlames(entitiesToSummon.Count); // In case of no entity left when summoning. Force Display Flames
+
         foreach (var entity in entitiesToSummon)
         {
             entity.GetSummoned();
@@ -144,6 +155,13 @@ public class SummoningCricle : PoolItem
         }
 
         onSummon.Invoke(this);
+        StartCoroutine(SummonAnimationWaitReturnRoutine());
+    }
+
+    private IEnumerator SummonAnimationWaitReturnRoutine()
+    {
+        animator.SetTrigger(flameSummonTriggerName);
+        yield return new WaitForSeconds(flameSummonDuration);
         ReturnToPool();
     }
 
@@ -155,6 +173,6 @@ public class SummoningCricle : PoolItem
 
     private void AnimateFlames(int summonCount)
     {
-        flamesRenderer.enabled = summonCount > 0;
+        flamesRenderer.enabled = hasSummoned || summonCount > 0;
     }
 }
