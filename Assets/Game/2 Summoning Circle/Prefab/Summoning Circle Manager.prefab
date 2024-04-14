@@ -47,6 +47,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circlePrefab: {fileID: 1110575373920287761, guid: 4c24612a80d56474db05617beddcf9d3, type: 3}
   player: {fileID: 0}
+  spawnPoint: {fileID: 0}
   circleCooldown: 5
   LevelThreshold:
   - circle: {fileID: 8380879205892175776, guid: 4c24612a80d56474db05617beddcf9d3, type: 3}
@@ -67,7 +68,7 @@ MonoBehaviour:
       CastTime: 3
       Size: 1
       Color: {r: 0.6462264, g: 1, b: 0.69930786, a: 1}
-    experience: 5
+    experience: 15
     maxCircleNumber: 2
   - circle: {fileID: 8380879205892175776, guid: 4c24612a80d56474db05617beddcf9d3, type: 3}
     data:
@@ -77,9 +78,20 @@ MonoBehaviour:
       CastTime: 2
       Size: 1.25
       Color: {r: 1, g: 0.7216981, b: 0.7216981, a: 1}
-    experience: 10
+    experience: 75
     maxCircleNumber: 3
-  ExpBar: {fileID: 0}
+  - circle: {fileID: 8380879205892175776, guid: 4c24612a80d56474db05617beddcf9d3, type: 3}
+    data:
+      MoveType: 2
+      MoveSpeed: 2.1
+      SummonType: 2
+      CastTime: 2
+      Size: 1.25
+      Color: {r: 1, g: 0.7216981, b: 0.7216981, a: 1}
+    experience: 225
+    maxCircleNumber: 3
+  expBar: {fileID: 0}
+  expText: {fileID: 0}
 --- !u!1 &8529591436231541846
 GameObject:
   m_ObjectHideFlags: 0
