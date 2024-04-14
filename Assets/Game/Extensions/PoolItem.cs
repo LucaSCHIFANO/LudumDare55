@@ -7,7 +7,7 @@ public abstract class PoolItem : MonoBehaviour, IPoolItem<PoolItem>
 
     virtual public void ReturnToPool()
     {
-        OnPoolReturn.Invoke(this);
+        OnPoolReturn?.Invoke(this);
     }
 }
 
