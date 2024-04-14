@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Events;
 
@@ -6,7 +7,8 @@ public class Summonable : MonoBehaviour
 {
     [SerializeField, Min(1)] private int minimumSummonLevel = 1;
     [SerializeField] private SkeletonData data;
-    
+    [SerializeField] private float summonedAnimaitionTime;
+
     public UnityEvent onGetSummoned;
     public UnityEvent onGetReturned;
 
@@ -19,8 +21,14 @@ public class Summonable : MonoBehaviour
 
     public void GetSummoned()
     {
-        BattlefieldManager.Instance.SummonSkeleton(this);
         onGetSummoned.Invoke();
+        StartCoroutine(WaitForAnimation());
+
+        IEnumerator WaitForAnimation()
+        {
+            yield return new WaitForSeconds(summonedAnimaitionTime);
+            BattlefieldManager.Instance.SummonSkeleton(this);
+        }
     }
 
     public void GetReturned()
