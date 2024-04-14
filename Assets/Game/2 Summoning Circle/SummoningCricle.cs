@@ -28,7 +28,8 @@ public class SummoningCricle : PoolItem
     [SerializeField] private Transform target;
     [SerializeField] private SpriteRenderer visualRenderer;
     
-    public UnityEvent<SummoningCricle, SummonData> onSummonEntity;
+    public UnityEvent<SummoningCricle, SummonData> onSummonEntity = new UnityEvent<SummoningCricle, SummonData>();
+    public UnityEvent<SummoningCricle> onSummon = new UnityEvent<SummoningCricle>();
 
     private MovementType moveType;
     private float movementSpeed;
@@ -96,6 +97,14 @@ public class SummoningCricle : PoolItem
 
         transform.localScale = Vector3.one * circleData.Size;
         visualRenderer.color = circleData.Color;
+
+        gameObject.SetActive(true);
+    }
+
+    public override void ReturnToPool()
+    {
+        base.ReturnToPool();
+        gameObject.SetActive(false);
     }
 
     private void Move()
@@ -115,6 +124,7 @@ public class SummoningCricle : PoolItem
             onSummonEntity.Invoke(this, entity.Data);
         }
 
+        onSummon.Invoke(this);
         ReturnToPool();
     }
 }

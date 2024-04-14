@@ -44,11 +44,16 @@ public class SummoningCircleManager : MonoBehaviour
         if (currentCircleCooldown < 0 && activeCircleCounter < LevelThreshold[currentLevel].maxCircleNumber) SpawnCircle(LevelThreshold[currentLevel]);
     }
 
-    private void OnSummon(SummoningCricle circle, SummonData data)
+    private void OnEntitySummon(SummoningCricle circle, SummonData data)
+    {
+        circle.onSummonEntity.RemoveListener(OnEntitySummon);
+        IncreaseExperience(data.experience);
+    }
+
+    private void OnCircleSummon(SummoningCricle circle)
     {
         activeCircleCounter--;
-        circle.onSummonEntity.RemoveListener(OnSummon);
-        IncreaseExperience(data.experience);
+        circle.onSummon.RemoveListener(OnCircleSummon);
     }
 
     private void SpawnCircle(CircleLevel level)
@@ -59,7 +64,8 @@ public class SummoningCircleManager : MonoBehaviour
         SummoningCricle currentCircle = circlePool.Get(spawnPoint);
         currentCircle.Init(player.transform, currentLevel + 1, level.data);
 
-        currentCircle.onSummonEntity.AddListener(OnSummon);
+        currentCircle.onSummonEntity.AddListener(OnEntitySummon);
+        currentCircle.onSummon.AddListener(OnCircleSummon);
     }
 
     private void IncreaseExperience(float exp)
