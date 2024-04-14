@@ -24,13 +24,12 @@ public class PauseMenu : MonoBehaviour
             masterVolume.SetFloat("MasterVolume", -80);
         }
     }
-    private void Update()
+    public void PauseInput()
     {
-        if (Input.GetKeyUp(KeyCode.Escape) && canPause)
-        {
-            if(isPaused) Resume();
-            else Pause();
-        }
+
+        if(isPaused) Resume();
+        else Pause();
+        
     }
     public void Resume()
     {
