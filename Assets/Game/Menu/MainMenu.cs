@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,8 +9,9 @@ public class MainMenu : MonoBehaviour
     [SerializeField] private GameObject htpMenuPrefab;
     public void QuitButton()
     {
+       /*
         if (Application.isEditor) EditorApplication.isPlaying = false;
-        Application.Quit();
+        Application.Quit();*/
     }
 
     public void HowToPlay()
