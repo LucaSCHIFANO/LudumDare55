@@ -134,6 +134,9 @@ MonoBehaviour:
     m_RotationOrder: 4
   respawnTime: 1.5
   animator: {fileID: 6963761447382333742}
+  wallLayer:
+    serializedVersion: 2
+    m_Bits: 0
 --- !u!114 &596097457238438019
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -367,13 +370,29 @@ PrefabInstance:
       propertyPath: m_ConstrainProportionsScale
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -6544894985563084783, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -3970311537052544292, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
       propertyPath: m_MaskInteraction
       value: 2
       objectReference: {fileID: 0}
+    - target: {fileID: -3058417310678735018, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: -2501334121249804458, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 265791185289391903, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
       propertyPath: m_MaskInteraction
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 966484667570309632, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 1609719090194301641, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
       propertyPath: m_MaskInteraction
@@ -382,6 +401,14 @@ PrefabInstance:
     - target: {fileID: 2179884108100506821, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
       propertyPath: m_MaskInteraction
       value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 3607058433640641250, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3849605409081543894, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5272413585649891229, guid: 85a9821f49ac184448678fb62a55a2a6, type: 3}
       propertyPath: m_MaskInteraction
