@@ -12,18 +12,19 @@ public class NPCCharacterController : MonoBehaviour
     [SerializeField] private Vector2 wanderTargetRadius;
     [SerializeField] private float wanderCooldown;
     [SerializeField] private Transform wanderPatrolCenter;
+    [SerializeField] private Animator animator;
 
     private MovementState moveState = MovementState.IDLE;
     private Vector3 targetPoint;
     private float wanderTimer = 0f;
-    private bool isSummoned = true;
+    private bool isSummoned = false;
     private Summonable summon;
 
     private void Start()
     {
         summon = GetComponent<Summonable>();
         summon.onGetSummoned.AddListener(OnSummon);
-
+        wanderTimer = wanderCooldown + UnityEngine.Random.Range(-1.5f, 2);
         if (wanderPatrolCenter == null)
             wanderPatrolCenter = transform;
     }
@@ -47,7 +48,10 @@ public class NPCCharacterController : MonoBehaviour
         Move();
 
         if (Vector2.Distance(targetPoint, transform.position) < .05f)
+        {
             moveState = MovementState.IDLE;
+            animator.SetBool("IsMoving", false);
+        }
     }
 
     private void WanderBehaviourUpdate()
@@ -60,7 +64,8 @@ public class NPCCharacterController : MonoBehaviour
 
         GetNewTargetPoint();
         moveState = MovementState.RUNNING;
-        wanderTimer += wanderCooldown;
+        animator.SetBool("IsMoving", true);
+        wanderTimer += wanderCooldown + UnityEngine.Random.Range(-1.5f, 2);
     }
 
     private void GetNewTargetPoint()
