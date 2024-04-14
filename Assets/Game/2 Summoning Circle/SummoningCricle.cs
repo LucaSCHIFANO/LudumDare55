@@ -28,6 +28,10 @@ public class SummoningCricle : PoolItem
 
     [SerializeField] private Transform target;
     [SerializeField] private SpriteRenderer visualRenderer;
+
+    [Header("Animation")]
+    [SerializeField] private float rotationSpeed;
+    [SerializeField] private SpriteRenderer flamesRenderer;
     
     public UnityEvent<SummoningCricle, SummonData> onSummonEntity = new UnityEvent<SummoningCricle, SummonData>();
     public UnityEvent<SummoningCricle> onSummon = new UnityEvent<SummoningCricle>();
@@ -45,6 +49,7 @@ public class SummoningCricle : PoolItem
     private void Update()   
     {
         Move();
+        Animate();
         if (!useCastTimer) return;
 
         if(castTimer <= 0f)
@@ -97,8 +102,11 @@ public class SummoningCricle : PoolItem
         castTimer = circleData.CastTime;
 
         transform.localScale = Vector3.one * circleData.Size;
+        visualRenderer.transform.rotation = Quaternion.identity;
         visualRenderer.sprite = circleData.Sprite;
         visualRenderer.color = circleData.Color;
+
+        flamesRenderer.enabled = false;
 
         gameObject.SetActive(true);
     }
@@ -128,5 +136,14 @@ public class SummoningCricle : PoolItem
 
         onSummon.Invoke(this);
         ReturnToPool();
+    }
+
+    private void Animate()
+    {
+        if (!useCastTimer) return;
+        visualRenderer.transform.Rotate(Vector3.forward * Time.deltaTime * rotationSpeed);
+
+        if (flamesRenderer.enabled) return;
+        flamesRenderer.enabled = true;
     }
 }
