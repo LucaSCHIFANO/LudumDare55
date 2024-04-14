@@ -129,10 +129,8 @@ MonoBehaviour:
     increaseTimeValue: 10
     isValueOnPercentage: 0
     experience: 1
-  summonedAnimaitionTime: 0.4
-  onBeginSummon:
-    m_PersistentCalls:
-      m_Calls: []
+  summonedAnimaitionTime: 0.7
+  fireParticles: {fileID: 2674606997865827587, guid: 0b8426f19acc3104f9c6a2594df63d2c, type: 3}
   onGetSummoned:
     m_PersistentCalls:
       m_Calls: []
