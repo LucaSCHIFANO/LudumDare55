@@ -226,7 +226,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -20
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.7264151, g: 0.30178905, b: 0.26383942, a: 1}
   m_FlipX: 0
@@ -721,7 +721,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: -1
+  m_SortingOrder: -20
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 0.16931911, g: 0.16353686, b: 0.46226418, a: 1}
   m_FlipX: 0
@@ -1707,7 +1707,7 @@ PrefabInstance:
     - target: {fileID: 2816548059681867696, guid: b12d8d0d957b32e4c83d5de7e4971adc, type: 3}
       propertyPath: spawnPoint
       value: 
-      objectReference: {fileID: 1599419836}
+      objectReference: {fileID: 0}
     - target: {fileID: 2839430061697478771, guid: b12d8d0d957b32e4c83d5de7e4971adc, type: 3}
       propertyPath: m_Name
       value: Summoning Circle Manager
@@ -1757,11 +1757,6 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b12d8d0d957b32e4c83d5de7e4971adc, type: 3}
---- !u!4 &1599419836 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 2834351366551071248, guid: b12d8d0d957b32e4c83d5de7e4971adc, type: 3}
-  m_PrefabInstance: {fileID: 1599419835}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1635043318
 GameObject:
   m_ObjectHideFlags: 0
