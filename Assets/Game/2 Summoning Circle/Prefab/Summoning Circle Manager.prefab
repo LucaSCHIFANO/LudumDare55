@@ -29,8 +29,7 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 2834351366551071248}
+  m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2816548059681867696
@@ -47,7 +46,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circlePrefab: {fileID: 1110575373920287761, guid: 4c24612a80d56474db05617beddcf9d3, type: 3}
   player: {fileID: 0}
-  spawnPoint: {fileID: 0}
+  circleSpawnRadius: {x: 6, y: 10}
   circleCooldown: 5
   LevelThreshold:
   - circle: {fileID: 8380879205892175776, guid: 4c24612a80d56474db05617beddcf9d3, type: 3}
@@ -92,34 +91,3 @@ MonoBehaviour:
     maxCircleNumber: 3
   expBar: {fileID: 0}
   expText: {fileID: 0}
---- !u!1 &8529591436231541846
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2834351366551071248}
-  m_Layer: 0
-  m_Name: SpawnPoint
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2834351366551071248
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8529591436231541846}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.29, y: -3.93, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 4730229567109663180}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

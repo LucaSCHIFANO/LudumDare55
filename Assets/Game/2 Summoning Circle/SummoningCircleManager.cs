@@ -1,3 +1,4 @@
+using NaughtyAttributes;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -9,7 +10,7 @@ public class SummoningCircleManager : MonoBehaviour
 {
     [SerializeField] private SummoningCricle circlePrefab;
     [SerializeField] private SkullyController player;
-    [SerializeField] private Transform spawnPoint;
+    [SerializeField, MinMaxSlider(0f, 20f)] private Vector2 circleSpawnRadius;
 
     private Pool<SummoningCricle> circlePool;
 
@@ -61,7 +62,7 @@ public class SummoningCircleManager : MonoBehaviour
         activeCircleCounter++;
         currentCircleCooldown = circleCooldown;
 
-        SummoningCricle currentCircle = circlePool.Get(spawnPoint);
+        SummoningCricle currentCircle = circlePool.Get(MathExtension.RandomPointInsideCircle(player.transform.position, circleSpawnRadius.y, circleSpawnRadius.x));
         currentCircle.Init(player.transform, currentLevel + 1, level.data);
 
         currentCircle.onSummonEntity.AddListener(OnEntitySummon);
