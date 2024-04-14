@@ -20,12 +20,15 @@ public class NPCCharacterController : MonoBehaviour
     private float wanderTimer = 0f;
     private bool isSummoned = false;
     private Summonable summon;
+    private Collider2D col2D;
 
     private void Start()
     {
+        col2D = GetComponent<Collider2D>();
         summon = GetComponent<Summonable>();
         summon.onGetSummoned.AddListener(OnSummon);
         summon.onGetReturned.AddListener(OnReturn);
+
         wanderTimer = wanderCooldown + UnityEngine.Random.Range(-1.5f, 2);
         if (wanderPatrolCenter == null)
             wanderPatrolCenter = transform;
@@ -37,7 +40,7 @@ public class NPCCharacterController : MonoBehaviour
         RealmUpdate();
     }
 
-    private void OnDisable()
+    private void OnDestroy()
     {
         summon.onGetSummoned.RemoveListener(OnSummon);
         summon.onGetReturned.RemoveListener(OnReturn);
@@ -91,18 +94,18 @@ public class NPCCharacterController : MonoBehaviour
 
     private void OnSummon()
     {
-        animator.SetTrigger("Attack");
         isSummoned = true;
-        GetComponent<BoxCollider2D>().isTrigger = true;
+        animator.SetTrigger("Attack");
+        col2D.isTrigger = true;
     }
     
     private void OnReturn()
     {
+        isSummoned = false;
         animator.ResetTrigger("Attack");
         animator.SetTrigger("Idle");
-        isSummoned = false;
-        summon.ReturnToPool();
         gameObject.SetActive(false);
-        GetComponent<BoxCollider2D>().isTrigger = false;
+        col2D.isTrigger = false;
+        summon.ReturnToPool();
     }
 }
