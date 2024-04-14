@@ -93,6 +93,7 @@ public class NPCCharacterController : MonoBehaviour
     {
         animator.SetTrigger("Attack");
         isSummoned = true;
+        GetComponent<BoxCollider2D>().isTrigger = true;
     }
     
     private void OnReturn()
@@ -102,5 +103,6 @@ public class NPCCharacterController : MonoBehaviour
         isSummoned = false;
         summon.ReturnToPool();
         gameObject.SetActive(false);
+        GetComponent<BoxCollider2D>().isTrigger = false;
     }
 }
