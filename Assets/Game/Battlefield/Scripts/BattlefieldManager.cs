@@ -29,12 +29,13 @@ public class BattlefieldManager : MonoBehaviour
 
     [Header("GameOver")]
     private bool gameOver = false;
-    [SerializeField] private GameObject goScrenn;
+    [SerializeField] private GameOver goScreen;
 
     [Header("Win")]
     private bool win = false;
     [SerializeField] private float winWait;
-    [SerializeField] private GameObject winScreen;
+    [SerializeField] private GameOver winScreen;
+    [SerializeField] private Timer timer;
 
     void Awake()
     {
@@ -68,7 +69,8 @@ public class BattlefieldManager : MonoBehaviour
         else
         {
             Time.timeScale = 0;
-            goScrenn.SetActive(true);
+            goScreen.gameObject.SetActive(true);
+            goScreen.SetTimer($"You survived {timer.Stop()}...");
             gameOver = true;
         }
 
@@ -115,8 +117,9 @@ public class BattlefieldManager : MonoBehaviour
 
     private IEnumerator Win()
     {
+        winScreen.SetTimer($"You win in {timer.Stop()}");
         yield return new WaitForSeconds(winWait);
-        winScreen.SetActive(true);
+        winScreen.gameObject.SetActive(true);
         Time.timeScale = 0f;
     }
 

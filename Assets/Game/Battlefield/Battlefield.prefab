@@ -366,6 +366,7 @@ GameObject:
   m_Component:
   - component: {fileID: 83861461590635099}
   - component: {fileID: 346909849844005738}
+  - component: {fileID: 8145153963120294264}
   m_Layer: 0
   m_Name: Battlefield
   m_TagString: Untagged
@@ -411,9 +412,22 @@ MonoBehaviour:
   maxTimerDuration: 3
   skeletonSpawnPoint: {fileID: 2271746021283085037}
   timeBetweenSkeletonSpawn: 1.5
-  goScrenn: {fileID: 0}
+  goScreen: {fileID: 0}
   winWait: 3
   winScreen: {fileID: 0}
+  timer: {fileID: 8145153963120294264}
+--- !u!114 &8145153963120294264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2402156114260201460}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9ec30d013ef76b48856a59f7ff2b39f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &2718873950204227208
 GameObject:
   m_ObjectHideFlags: 0
