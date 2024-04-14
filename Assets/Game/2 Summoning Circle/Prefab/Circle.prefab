@@ -132,6 +132,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {fileID: 0}
+  visualRenderer: {fileID: 4775718574810304458}
   onSummonEntity:
     m_PersistentCalls:
       m_Calls: []

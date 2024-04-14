@@ -33,13 +33,13 @@ public class SummoningCircleManager : MonoBehaviour
         circlePool = new Pool<SummoningCricle>(circlePrefab);
         if (player == null)
             player = FindFirstObjectByType<SkullyController>();
-        SpawnCircle();
+        SpawnCircle(LevelThreshold[currentLevel]);
     }
 
     private void Update()
     {
         currentCircleCooldown -= Time.deltaTime;
-        if (currentCircleCooldown < 0 && activeCircleCounter < LevelThreshold[currentLevel].maxCircleNumber) SpawnCircle();
+        if (currentCircleCooldown < 0 && activeCircleCounter < LevelThreshold[currentLevel].maxCircleNumber) SpawnCircle(LevelThreshold[currentLevel]);
     }
 
     private void OnSummon(SummoningCricle circle, SummonData data)
@@ -49,13 +49,14 @@ public class SummoningCircleManager : MonoBehaviour
         IncreaseExperience(data.experience);
     }
 
-    private void SpawnCircle()
+    private void SpawnCircle(CircleLevel level)
     {
         activeCircleCounter++;
         currentCircleCooldown = circleCooldown;
 
         SummoningCricle currentCircle = circlePool.Get(spawnPoint);
-        currentCircle.target = player.transform;
+        currentCircle.Init(player.transform, currentLevel + 1, level.data);
+
         currentCircle.onSummonEntity.AddListener(OnSummon);
     }
 
@@ -80,6 +81,7 @@ public class SummoningCircleManager : MonoBehaviour
 public class CircleLevel
 {
     public GameObject circle;
+    public SummoningCricle.Data data;
     public float experience;
     public int maxCircleNumber;
 }

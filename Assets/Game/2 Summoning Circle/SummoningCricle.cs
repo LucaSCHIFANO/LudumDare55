@@ -6,32 +6,39 @@ using UnityEngine.Events;
 
 public class SummoningCricle : PoolItem
 {
-    private enum MovementType { STATIC, FOLLOW, SNAP_FOLLOW }
-    private enum SummonType { CONTACT, TIMER, TIMED_CONTACT }
+    [System.Serializable]
+    public class Data
+    {
+        [Header("Movement")]
+        public MovementType MoveType;
+        [AllowNesting, HideIf(nameof(MoveType), MovementType.STATIC)] public float MoveSpeed;
 
-    public Transform target;
+        [Header("Summons")]
+        [SerializeField] public SummonType SummonType;
+        [SerializeField, AllowNesting, HideIf(nameof(SummonType), SummonType.CONTACT)] public float CastTime;
 
-    [Header("Movement")]
-    [SerializeField] private MovementType moveType;
-    [SerializeField, HideIf(nameof(moveType), MovementType.STATIC)] private float movementSpeed;
+        [Header("Visuals")]
+        [SerializeField] public float Size = 1f;
+        [SerializeField] public Color Color = new Color(1f, 1f, 1f);
+    }
 
-    [Header("Summons")]
-    [SerializeField, Min(1)] private int level = 1;
-    [SerializeField] private SummonType summonType;
-    [SerializeField, HideIf(nameof(summonType), SummonType.CONTACT)] private float summonCastTime;
+    public enum MovementType { STATIC, FOLLOW, SNAP_FOLLOW }
+    public enum SummonType { CONTACT, TIMER, TIMED_CONTACT }
 
+    [SerializeField] private Transform target;
+    [SerializeField] private SpriteRenderer visualRenderer;
+    
     public UnityEvent<SummoningCricle, SummonData> onSummonEntity;
+
+    private MovementType moveType;
+    private float movementSpeed;
+
+    private int level = 1;
+    private SummonType summonType;
 
     private List<Summonable> entitiesToSummon = new List<Summonable>();
     private float castTimer = 0f;
     private bool useCastTimer;
-
-
-    private void Start()
-    {
-        useCastTimer = summonType == SummonType.TIMER;
-        castTimer = summonCastTime;
-    }
 
     private void Update()   
     {
@@ -72,6 +79,23 @@ public class SummoningCricle : PoolItem
         if (!entitiesToSummon.Contains(summonable)) return;
 
         entitiesToSummon.Remove(summonable);
+    }
+
+    public void Init(Transform target, int level, Data circleData)
+    {
+        this.target = target;
+        this.level = level;
+
+        moveType = circleData.MoveType;
+        movementSpeed = circleData.MoveSpeed;
+
+        summonType = circleData.SummonType;
+
+        useCastTimer = summonType == SummonType.TIMER;
+        castTimer = circleData.CastTime;
+
+        transform.localScale = Vector3.one * circleData.Size;
+        visualRenderer.color = circleData.Color;
     }
 
     private void Move()
