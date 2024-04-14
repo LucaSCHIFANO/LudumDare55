@@ -1,0 +1,113 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2839430061697478771
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4730229567109663180}
+  - component: {fileID: 2816548059681867696}
+  m_Layer: 0
+  m_Name: Summoning Circle Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4730229567109663180
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2839430061697478771}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 2834351366551071248}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2816548059681867696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2839430061697478771}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1a5146f3a9fd63946a4483d003f64727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  circlePrefab: {fileID: 1110575373920287761, guid: 4c24612a80d56474db05617beddcf9d3, type: 3}
+  player: {fileID: 0}
+  circleCooldown: 5
+  LevelThreshold:
+  - circle: {fileID: 8380879205892175776, guid: 4c24612a80d56474db05617beddcf9d3, type: 3}
+    data:
+      MoveType: 2
+      MoveSpeed: 2
+      SummonType: 2
+      CastTime: 4
+      Size: 0.8
+      Color: {r: 1, g: 1, b: 1, a: 1}
+    experience: 0
+    maxCircleNumber: 1
+  - circle: {fileID: 8380879205892175776, guid: 4c24612a80d56474db05617beddcf9d3, type: 3}
+    data:
+      MoveType: 2
+      MoveSpeed: 1.9
+      SummonType: 2
+      CastTime: 3
+      Size: 1
+      Color: {r: 0.6462264, g: 1, b: 0.69930786, a: 1}
+    experience: 5
+    maxCircleNumber: 2
+  - circle: {fileID: 8380879205892175776, guid: 4c24612a80d56474db05617beddcf9d3, type: 3}
+    data:
+      MoveType: 2
+      MoveSpeed: 2.1
+      SummonType: 2
+      CastTime: 2
+      Size: 1.25
+      Color: {r: 1, g: 0.7216981, b: 0.7216981, a: 1}
+    experience: 10
+    maxCircleNumber: 3
+  ExpBar: {fileID: 0}
+--- !u!1 &8529591436231541846
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2834351366551071248}
+  m_Layer: 0
+  m_Name: SpawnPoint
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2834351366551071248
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8529591436231541846}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.29, y: -3.93, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 4730229567109663180}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
