@@ -26,6 +26,7 @@ public class NPCCharacterController : MonoBehaviour
     {
         col2D = GetComponent<Collider2D>();
         summon = GetComponent<Summonable>();
+        summon.onBeginSummon.AddListener(OnBeginSummon);
         summon.onGetSummoned.AddListener(OnSummon);
         summon.onGetReturned.AddListener(OnReturn);
 
@@ -42,6 +43,7 @@ public class NPCCharacterController : MonoBehaviour
 
     private void OnDestroy()
     {
+        summon.onBeginSummon.RemoveListener(OnBeginSummon);
         summon.onGetSummoned.RemoveListener(OnSummon);
         summon.onGetReturned.RemoveListener(OnReturn);
     }
@@ -92,9 +94,14 @@ public class NPCCharacterController : MonoBehaviour
         transform.Translate(dir.normalized * Time.deltaTime * moveSpeed);
     }
 
+    private void OnBeginSummon()
+    {
+        animator.SetTrigger("Summon");
+        isSummoned = true;
+    }
+
     private void OnSummon()
     {
-        isSummoned = true;
         animator.SetTrigger("Attack");
         col2D.isTrigger = true;
     }

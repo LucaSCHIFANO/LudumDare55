@@ -9,10 +9,13 @@ public class Summonable : PoolItem
     [SerializeField] private SummonData data;
     [SerializeField] private float summonedAnimaitionTime;
 
+    public UnityEvent onBeginSummon;
     public UnityEvent onGetSummoned;
     public UnityEvent onGetReturned;
 
     public SummonData Data { get => data; }
+
+    private bool isSummoned;
 
     public bool CanBeSummoned(int magicLevel)
     {
@@ -21,18 +24,23 @@ public class Summonable : PoolItem
 
     public void GetSummoned()
     {
-        onGetSummoned.Invoke();
+        if (isSummoned) return;
+
+        isSummoned = true;
+        onBeginSummon.Invoke();
         StartCoroutine(WaitForAnimation());
 
         IEnumerator WaitForAnimation()
         {
             yield return new WaitForSeconds(summonedAnimaitionTime);
+            onGetSummoned.Invoke();
             BattlefieldManager.Instance.SummonSkeleton(this);
         }
     }
 
     public void GetReturned()
     {
+        isSummoned = false;
         onGetReturned.Invoke();
     }
 }
