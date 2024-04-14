@@ -26,6 +26,8 @@ public class SummoningCircleManager : MonoBehaviour
     [SerializeField] private Image expBar;
     [SerializeField] private TextMeshProUGUI expText;
 
+    private bool pauseCooldownTimer = false;
+
     private void Awake()
     {
         currentCircleCooldown = circleCooldown;    
@@ -34,15 +36,25 @@ public class SummoningCircleManager : MonoBehaviour
     private void Start()
     {
         circlePool = new Pool<SummoningCricle>(circlePrefab);
-        if (player == null)
-            player = FindFirstObjectByType<SkullyController>();
+        InitFromPlayer();
         SpawnCircle(LevelThreshold[currentLevel]);
     }
 
     private void Update()
     {
+        if (pauseCooldownTimer) return;
         currentCircleCooldown -= Time.deltaTime;
         if (currentCircleCooldown < 0 && activeCircleCounter < LevelThreshold[currentLevel].maxCircleNumber) SpawnCircle(LevelThreshold[currentLevel]);
+    }
+
+    private void InitFromPlayer()
+    {
+        if (player == null)
+            player = FindFirstObjectByType<SkullyController>();
+        var summon = player.GetComponent<Summonable>();
+
+        summon.onGetSummoned.AddListener(() => pauseCooldownTimer = true);
+        summon.onGetReturned.AddListener(() => pauseCooldownTimer = false);
     }
 
     private void OnEntitySummon(SummoningCricle circle, SummonData data)
