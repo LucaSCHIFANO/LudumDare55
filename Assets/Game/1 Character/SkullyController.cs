@@ -23,6 +23,7 @@ public class SkullyController : MonoBehaviour
     private Vector3 summonedPosition;
     private Collider2D summonCollider;
     [SerializeField] private Animator animator;
+    [SerializeField] private LayerMask wallLayer;
 
     private void Start()
     {
@@ -43,6 +44,21 @@ public class SkullyController : MonoBehaviour
 
 
         direction = direction.normalized;
+        Vector2 dir = new Vector2 (Mathf.Sign(direction.x), 0);
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, .5f, wallLayer);
+        if(hit.collider != null)
+        {
+            direction.x = 0;
+        }
+        
+        dir = new Vector2 (0, Mathf.Sign(direction.y));
+        hit = Physics2D.Raycast(transform.position, dir, .5f, wallLayer);
+        if(hit.collider != null)
+        {
+            direction.y = 0;
+        }
+
+
         if (isDashing)
         {
             float t = (Time.time - dashTime) / dashDuration;

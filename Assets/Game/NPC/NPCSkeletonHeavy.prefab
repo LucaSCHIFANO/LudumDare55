@@ -57,6 +57,10 @@ PrefabInstance:
       value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: minimumSummonLevel
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
       propertyPath: data.increaseTimeValue
       value: 25
       objectReference: {fileID: 0}
