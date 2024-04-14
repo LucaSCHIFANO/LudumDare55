@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 232bf4237b30a764188693498f8dd763, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 47758e7c508140c488a5319df782dc9c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -134,6 +134,9 @@ MonoBehaviour:
   target: {fileID: 0}
   visualRenderer: {fileID: 4775718574810304458}
   onSummonEntity:
+    m_PersistentCalls:
+      m_Calls: []
+  onSummon:
     m_PersistentCalls:
       m_Calls: []
 --- !u!50 &1202439207969833168

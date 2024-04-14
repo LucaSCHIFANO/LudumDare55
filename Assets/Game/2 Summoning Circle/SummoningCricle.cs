@@ -19,6 +19,7 @@ public class SummoningCricle : PoolItem
 
         [Header("Visuals")]
         [SerializeField] public float Size = 1f;
+        [SerializeField] public Sprite Sprite;
         [SerializeField] public Color Color = new Color(1f, 1f, 1f);
     }
 
@@ -96,6 +97,7 @@ public class SummoningCricle : PoolItem
         castTimer = circleData.CastTime;
 
         transform.localScale = Vector3.one * circleData.Size;
+        visualRenderer.sprite = circleData.Sprite;
         visualRenderer.color = circleData.Color;
 
         gameObject.SetActive(true);
