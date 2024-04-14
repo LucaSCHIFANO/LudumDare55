@@ -11,8 +11,9 @@ public class NPCCharacterController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private Vector2 wanderTargetRadius;
     [SerializeField] private float wanderCooldown;
-    [SerializeField] private Transform wanderPatrolCenter;
+    [SerializeField] private LayerMask wallLayer; 
     [SerializeField] private Animator animator;
+    [SerializeField] private Transform wanderPatrolCenter;
 
     private MovementState moveState = MovementState.IDLE;
     private Vector3 targetPoint;
@@ -70,7 +71,14 @@ public class NPCCharacterController : MonoBehaviour
 
     private void GetNewTargetPoint()
     {
-        targetPoint = MathExtension.RandomPointInsideCircle(wanderPatrolCenter.position, wanderTargetRadius.y, wanderTargetRadius.x);
+        RaycastHit2D hit;
+        int tries = 500;
+        do
+        {
+            targetPoint = MathExtension.RandomPointInsideCircle(wanderPatrolCenter.position, wanderTargetRadius.y, wanderTargetRadius.x);
+            hit = Physics2D.Raycast(transform.position, targetPoint - transform.position, Vector2.Distance(targetPoint,transform.position), wallLayer) ;
+            tries--;
+        } while (hit.collider != null && tries > 0);
     }
 
     private void Move()

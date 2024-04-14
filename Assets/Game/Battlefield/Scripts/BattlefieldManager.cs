@@ -28,9 +28,14 @@ public class BattlefieldManager : MonoBehaviour
     private float currentTimeBetweenSkeletonSpawn;
 
     [Header("GameOver")]
-    private bool isGameOver = false;
-    [SerializeField] private GameObject goScrenn;
-    
+    private bool gameOver = false;
+    [SerializeField] private GameOver goScreen;
+
+    [Header("Win")]
+    private bool win = false;
+    [SerializeField] private float winWait;
+    [SerializeField] private GameOver winScreen;
+    [SerializeField] private Timer timer;
 
     void Awake()
     {
@@ -51,18 +56,22 @@ public class BattlefieldManager : MonoBehaviour
 
     void Update()
     {
-        if (isGameOver == true) return;
+        if (gameOver == true) return;
 
         if (currentTimerDuration > 0)
         {
-            currentTimerDuration -= Time.deltaTime;
-            updatePaladinPosition();
+            if (win == false)
+            {
+                currentTimerDuration -= Time.deltaTime;
+                updatePaladinPosition();
+            }
         }
         else
         {
             Time.timeScale = 0;
-            goScrenn.SetActive(true);
-            isGameOver = true;
+            goScreen.gameObject.SetActive(true);
+            goScreen.SetTimer($"You survived {timer.Stop()}...");
+            gameOver = true;
         }
 
         if (skeletonWaitingToSpawn.Count > 0 && currentTimeBetweenSkeletonSpawn <= 0) 
@@ -98,6 +107,20 @@ public class BattlefieldManager : MonoBehaviour
             currentTimerDuration += time;
 
         currentTimerDuration = Mathf.Clamp(currentTimerDuration,0 , maxTimerDuration);
+    }
+
+    public void StopTimer()
+    {
+        win = true;
+        StartCoroutine(Win());
+    }
+
+    private IEnumerator Win()
+    {
+        winScreen.SetTimer($"You win in {timer.Stop()}");
+        yield return new WaitForSeconds(winWait);
+        winScreen.gameObject.SetActive(true);
+        Time.timeScale = 0f;
     }
 
     public void SummonSkeleton(Summonable npc)
