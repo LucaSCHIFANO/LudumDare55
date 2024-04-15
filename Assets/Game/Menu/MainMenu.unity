@@ -155,7 +155,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sounds:
   - name: MainMusic
-    clip: {fileID: 8300000, guid: 50ac229daaf0e3943930e153997b3f35, type: 3}
+    clip: {fileID: 8300000, guid: 820a90e8fcd50e74e8e8a9c6404adb21, type: 3}
     audioMixerGroup: {fileID: 24300002, guid: 472e9349f5b08f949844ec1b7ee1de66, type: 2}
     volume: 0.1
     pitch: 1

@@ -210,6 +210,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 51a64bd2-1175-467a-b94b-f37f7fd379e9
     m_ActionName: Keyboard/Dash[/Keyboard/space,/XInputControllerWindows/buttonSouth]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: d3ac87ca-d845-4192-b3a4-61aff1483895
+    m_ActionName: Keyboard/Pause[/Keyboard/escape]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Keyboard
@@ -297,12 +301,39 @@ MonoBehaviour:
     experience: 1
   summonedAnimaitionTime: 1.1
   fireParticles: {fileID: 2674606997865827587, guid: 0b8426f19acc3104f9c6a2594df63d2c, type: 3}
+  onBeginSummon:
+    m_PersistentCalls:
+      m_Calls: []
   onGetSummoned:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3996366283508736829}
+        m_TargetAssemblyTypeName: Summonable, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Respawn
+          m_BoolArgument: 0
+        m_CallState: 2
   onGetReturned:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 3996366283508736829}
+        m_TargetAssemblyTypeName: Summonable, Assembly-CSharp
+        m_MethodName: PlaySound
+        m_Mode: 5
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: Respawn
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!1001 &3091588819030003655
 PrefabInstance:
   m_ObjectHideFlags: 0

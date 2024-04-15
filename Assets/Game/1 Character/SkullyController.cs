@@ -101,6 +101,7 @@ public class SkullyController : MonoBehaviour
             isDashing = true;
             dashTime = Time.time;
             dashDirection = dashDirection.normalized;
+            SoundManager.Instance.Play("Dash");
         }
     }
 

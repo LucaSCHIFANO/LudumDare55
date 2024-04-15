@@ -45,6 +45,13 @@ public class Summonable : PoolItem
         isSummoned = false;
         onGetReturned.Invoke();
     }
+
+    public void PlaySound(string name)
+    {
+        if (name == "SkelliesSpawn" && UnityEngine.Random.Range(0, 3) != 2)
+            return;
+        SoundManager.Instance.Play(name);
+    }
 }
 
 
