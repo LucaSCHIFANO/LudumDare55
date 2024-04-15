@@ -85,11 +85,15 @@ public class SummoningCircleManager : MonoBehaviour
     {
         currentExperience += exp;
 
+        var previousLevel = currentLevel;
         for (int i = 0; i < LevelThreshold.Count; i++)
         {
             if (LevelThreshold[i].experience <= currentExperience) 
                 currentLevel = i;
         }
+
+        if (currentLevel > previousLevel)
+            SoundManager.Instance.Play("LevelUp");
 
         if (currentLevel != LevelThreshold.Count - 1)
             expBar.fillAmount = (currentExperience - LevelThreshold[currentLevel].experience) / 
