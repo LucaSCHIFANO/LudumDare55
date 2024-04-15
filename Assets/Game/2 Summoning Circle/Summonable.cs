@@ -48,6 +48,8 @@ public class Summonable : PoolItem
 
     public void PlaySound(string name)
     {
+        if (name == "SkelliesSpawn" && UnityEngine.Random.Range(0, 3) != 2)
+            return;
         SoundManager.Instance.Play(name);
     }
 }
