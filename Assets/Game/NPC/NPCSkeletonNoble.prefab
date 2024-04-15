@@ -50,7 +50,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
       propertyPath: data.speed
-      value: 1.2
+      value: 0.8
       objectReference: {fileID: 0}
     - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
       propertyPath: data.experience
@@ -62,7 +62,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
       propertyPath: data.increaseTimeValue
-      value: 15
+      value: 12.5
       objectReference: {fileID: 0}
     - target: {fileID: 1182687837092904630, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
       propertyPath: m_Color.b

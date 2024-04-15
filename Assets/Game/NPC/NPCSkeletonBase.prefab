@@ -125,8 +125,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minimumSummonLevel: 1
   data:
-    speed: 1
-    increaseTimeValue: 10
+    speed: 0.8
+    increaseTimeValue: 7.5
     isValueOnPercentage: 0
     experience: 1
   summonedAnimaitionTime: 0.4

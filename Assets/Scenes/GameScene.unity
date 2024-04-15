@@ -8360,6 +8360,14 @@ PrefabInstance:
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2816548059681867696, guid: b12d8d0d957b32e4c83d5de7e4971adc, type: 3}
+      propertyPath: LevelThreshold.Array.data[1].experience
+      value: 12
+      objectReference: {fileID: 0}
+    - target: {fileID: 2816548059681867696, guid: b12d8d0d957b32e4c83d5de7e4971adc, type: 3}
+      propertyPath: LevelThreshold.Array.data[2].experience
+      value: 50
+      objectReference: {fileID: 0}
+    - target: {fileID: 2816548059681867696, guid: b12d8d0d957b32e4c83d5de7e4971adc, type: 3}
       propertyPath: LevelThreshold.Array.data[3].data.Color.b
       value: 1
       objectReference: {fileID: 0}
@@ -8394,6 +8402,14 @@ PrefabInstance:
     - target: {fileID: 2816548059681867696, guid: b12d8d0d957b32e4c83d5de7e4971adc, type: 3}
       propertyPath: LevelThreshold.Array.data[3].data.MoveSpeed
       value: 3.6
+      objectReference: {fileID: 0}
+    - target: {fileID: 2816548059681867696, guid: b12d8d0d957b32e4c83d5de7e4971adc, type: 3}
+      propertyPath: LevelThreshold.Array.data[2].maxCircleNumber
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2816548059681867696, guid: b12d8d0d957b32e4c83d5de7e4971adc, type: 3}
+      propertyPath: LevelThreshold.Array.data[3].maxCircleNumber
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2839430061697478771, guid: b12d8d0d957b32e4c83d5de7e4971adc, type: 3}
       propertyPath: m_Name
@@ -9650,7 +9666,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1758327937}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -10997,6 +11013,10 @@ PrefabInstance:
     - target: {fileID: 596097457238438019, guid: 4cdd5e56db6608a45917475078c4a3c0, type: 3}
       propertyPath: m_ActionEvents.Array.data[3].m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
+    - target: {fileID: 3996366283508736829, guid: 4cdd5e56db6608a45917475078c4a3c0, type: 3}
+      propertyPath: summonedAnimaitionTime
+      value: 0.75
       objectReference: {fileID: 0}
     - target: {fileID: 4662372159378279789, guid: 4cdd5e56db6608a45917475078c4a3c0, type: 3}
       propertyPath: m_LocalPosition.y
