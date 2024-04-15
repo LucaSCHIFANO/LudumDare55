@@ -76,7 +76,6 @@ public class BattlefieldManager : MonoBehaviour
 
         if (skeletonWaitingToSpawn.Count > 0 && currentTimeBetweenSkeletonSpawn <= 0) 
         {
-            skeletonWaitingToSpawn[0].transform.position = skeletonSpawnPoint.position;
             skeletonSpawned.Add(skeletonWaitingToSpawn[0]);
             skeletonWaitingToSpawn.RemoveAt(0);
 
@@ -126,6 +125,7 @@ public class BattlefieldManager : MonoBehaviour
     public void SummonSkeleton(Summonable npc)
     {
         skeletonWaitingToSpawn.Add(npc);
+        npc.transform.position = skeletonSpawnPoint.position;
     }
 
     private void MoveSkeletons()
