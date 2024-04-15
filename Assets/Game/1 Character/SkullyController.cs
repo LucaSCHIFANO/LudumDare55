@@ -8,7 +8,7 @@ public class SkullyController : MonoBehaviour
 
     [Header("Movement")]
     [SerializeField] private float movementSpeed = 5;
-    private Vector3 direction;
+    private Vector3 inputDirection;
     private float dashTime;
     [SerializeField] private float dashCooldown = 2;
     [SerializeField] private float dashDuration = 1;
@@ -43,7 +43,7 @@ public class SkullyController : MonoBehaviour
             return;
 
 
-        direction = direction.normalized;
+        Vector3 direction = inputDirection.normalized;
         Vector2 dir = new Vector2 (Mathf.Sign(direction.x), 0);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, .5f, wallLayer);
         if(hit.collider != null)
@@ -86,12 +86,12 @@ public class SkullyController : MonoBehaviour
 
     public void HorizontalInput(InputAction.CallbackContext context)
     {
-        direction.x = context.ReadValue<float>();
+        inputDirection.x = context.ReadValue<float>();
     }
     
     public void VerticalInput(InputAction.CallbackContext context)
     {
-        direction.y = context.ReadValue<float>();
+        inputDirection.y = context.ReadValue<float>();
     }
 
     public void Dash(InputAction.CallbackContext context)
