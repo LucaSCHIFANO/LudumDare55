@@ -37,6 +37,8 @@ public class BattlefieldManager : MonoBehaviour
     [SerializeField] private GameOver winScreen;
     [SerializeField] private Timer timer;
 
+    [SerializeField] private Animator wizardAnimator;
+
     void Awake()
     {
         if (instance == null) instance = this;
@@ -126,6 +128,7 @@ public class BattlefieldManager : MonoBehaviour
     {
         skeletonWaitingToSpawn.Add(npc);
         npc.transform.position = skeletonSpawnPoint.position;
+        wizardAnimator.SetTrigger("Summon");
     }
 
     private void MoveSkeletons()

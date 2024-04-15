@@ -42,7 +42,32 @@ public class SkullyController : MonoBehaviour
         if (isSummoned)
             return;
 
+        if (isDashing)
+        {
+            float t = (Time.time - dashTime) / dashDuration;
+            Vector3 direction = dashDirection.normalized;
+            Vector2 dir = new Vector2(Mathf.Sign(direction.x), 0);
+            RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, .5f, wallLayer);
+            if (hit.collider != null)
+            {
+                direction.x = 0;
+            }
 
+            dir = new Vector2(0, Mathf.Sign(direction.y));
+            hit = Physics2D.Raycast(transform.position, dir, .5f, wallLayer);
+            if (hit.collider != null)
+            {
+                direction.y = 0;
+            }
+            transform.position += Time.deltaTime * dashSpeed * direction * dashCurve.Evaluate(t);
+            if(t>= 1)
+            {
+                isDashing = false;
+            }
+        }
+        else
+        {
+            
         Vector3 direction = inputDirection.normalized;
         Vector2 dir = new Vector2 (Mathf.Sign(direction.x), 0);
         RaycastHit2D hit = Physics2D.Raycast(transform.position, dir, .5f, wallLayer);
@@ -58,18 +83,6 @@ public class SkullyController : MonoBehaviour
             direction.y = 0;
         }
 
-
-        if (isDashing)
-        {
-            float t = (Time.time - dashTime) / dashDuration;
-            transform.position += Time.deltaTime * dashSpeed * dashDirection * dashCurve.Evaluate(t);
-            if(t>= 1)
-            {
-                isDashing = false;
-            }
-        }
-        else
-        {
             transform.position += Time.deltaTime * movementSpeed * direction;
 
             if (direction.sqrMagnitude > .5)
