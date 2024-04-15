@@ -147,6 +147,7 @@ public class SummoningCricle : PoolItem
     {
         hasSummoned = true;
         AnimateFlames(entitiesToSummon.Count); // In case of no entity left when summoning. Force Display Flames
+        SoundManager.Instance.Play("Flame");
 
         foreach (var entity in entitiesToSummon)
         {

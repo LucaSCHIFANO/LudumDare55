@@ -60,6 +60,38 @@ PrefabInstance:
       propertyPath: data.increaseTimeValue
       value: 100
       objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: onGetSummoned.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: onGetSummoned.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: onGetSummoned.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 579281555598249356}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: onGetSummoned.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: onGetSummoned.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: PlaySound
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: onGetSummoned.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: Summonable, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: onGetSummoned.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_StringArgument
+      value: KingSpawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+      propertyPath: onGetSummoned.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 1182687837092904630, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
       propertyPath: m_Color.b
       value: 0.3490566
@@ -217,3 +249,14 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+--- !u!114 &579281555598249356 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 141491911507211547, guid: 672ed4aba786f224db0934722ea8c696, type: 3}
+  m_PrefabInstance: {fileID: 719638768342333591}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f76afa3e143dd643a1e4d13eb6e2f81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

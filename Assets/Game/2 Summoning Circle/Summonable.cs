@@ -45,6 +45,11 @@ public class Summonable : PoolItem
         isSummoned = false;
         onGetReturned.Invoke();
     }
+
+    public void PlaySound(string name)
+    {
+        SoundManager.Instance.Play(name);
+    }
 }
 
 

@@ -8,8 +8,12 @@ public class SoundManager : MonoBehaviour
 {
     public Sound[] sounds;
 
+    private static SoundManager instance = null;
+    public static SoundManager Instance => instance;
+
     void Awake()
     {
+        if (instance == null) instance = this;
         foreach (Sound s in sounds)
         {
             s.source = gameObject.AddComponent<AudioSource>();

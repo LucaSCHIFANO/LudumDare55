@@ -33,12 +33,14 @@ public class Paladin : MonoBehaviour
                 if (isDead) return;
                 BattlefieldManager.Instance.StopTimer();
                 OnDeath();
+                SoundManager.Instance.Play("KingAttack");
             }
             else
             {
                 summonable.GetReturned();
                 BattlefieldManager.Instance.IncreaseTimer(summonable.Data.increaseTimeValue, summonable.Data.isValueOnPercentage);
                 OnSummonCollision.Invoke(summonable);
+                SoundManager.Instance.Play("PaladinAttack");
             }
         }
     }
